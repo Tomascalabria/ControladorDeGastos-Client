@@ -1,7 +1,23 @@
-import React from 'react'
-import {Box,Button,Container,FormControl,FormLabel,Heading,Select,Input,Stack,useBreakpointValue,Alert,AlertDescription,AlertIcon,AlertTitle} from '@chakra-ui/react'
+import React, { useRef } from 'react'
+import axios from 'axios'
+import {Box,Button,Container,FormControl,FormLabel,Heading,Select,Input,Stack,useBreakpointValue} from '@chakra-ui/react'
+
 
 export const CreateExpense = () => {
+
+const title=useRef()
+const tipo=useRef()
+const monto=useRef()
+
+const submitGasto=(e)=>{
+  e.preventDefault()
+axios.post('/expenses/create/',{title:title.current.value,amount:monto.current.value,category:tipo.current.value})
+.then((res)=>{if(res.status===201){console.log(`Data sent! ${res.data}`)}})
+.catch((err)=>{
+  console.log(err)
+})
+}
+
   return (
     <Container
         maxW="lg"
@@ -49,7 +65,7 @@ export const CreateExpense = () => {
                 sm: 'xl',
             }}
             >
-          <form onSubmit={handleSubmit}> 
+          <form onSubmit={submitGasto}> 
           <Stack spacing="6">
             <Stack spacing="5">
               <FormControl>
@@ -58,9 +74,9 @@ export const CreateExpense = () => {
               </FormControl >
            
               <FormControl>
-                <Select placeholder='Tipo de gasto'>
-                  <Option>Ingreso</Option>
-                  <Option>Egreso</Option>
+                <Select ref={tipo} placeholder='Tipo de gasto'>
+                  <option  type='ingreso' id='ingreso' name='ingreso'>Ingreso</option>
+                  <option type='egreso'id='egreso' name='egreso'>Egreso</option>
                 </Select>
               </FormControl >
             
@@ -74,31 +90,13 @@ export const CreateExpense = () => {
             </Stack>
             
             <Stack spacing="6">
-              <Button type={'submit'} fontWeight='bold' variant="primary" _hover={{background:'##F8FB', color:'black',border:'solid 0.2px black'}}>Registrarme</Button>
+              <Button type={'submit'} fontWeight='bold' variant="primary" _hover={{background:'##F8FB', color:'black',border:'solid 0.2px black'}}>Crear Gasto</Button>
                
             </Stack>
           </Stack>
           </form>
                   </Box>
-      {status===201?
-      <Alert
-      status='success'
-      variant='subtle'
-      flexDirection='column'
-      alignItems='center'
-      justifyContent='center'
-      textAlign='center'
-      height='200px'
-    >
-      <AlertIcon boxSize='40px' mr={0} />
-      <AlertTitle mt={4} mb={1} fontSize='lg'>
-        Felicitaciones!
-      </AlertTitle>
-      <AlertDescription maxWidth='sm'>
-        Su usuario ha sido registrado exitosamente.
-      </AlertDescription>
-    </Alert>:<></>}
-    
+     
 </Stack>
 </Container>
   )

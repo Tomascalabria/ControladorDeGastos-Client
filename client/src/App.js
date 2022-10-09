@@ -6,6 +6,7 @@ import { Register } from './components/Auth/Register/Register';
 import { AuthContext } from './Context/AuthContext';
 import { useContext } from 'react';
 import { ExpensesList } from './components/ItemList/ExpensesList';
+import { CreateExpense } from './components/CreateExpense/CreateExpense';
 
 function App() {
 const {user}=useContext(AuthContext)
@@ -19,7 +20,10 @@ const {user}=useContext(AuthContext)
    
    {!user?<Route path='/login' element={<Login/>}></Route>:<></>}
   <Route path='/register' element={<Register/>}></Route>
+    
+    <Route path='/gastos/crear' element={<CreateExpense/>}></Route>
     </Routes>
+
     </div>
   );
 }
