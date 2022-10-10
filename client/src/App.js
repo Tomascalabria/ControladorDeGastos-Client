@@ -22,6 +22,7 @@ const {user}=useContext(AuthContext)
   <Route path='/register' element={<Register/>}></Route>
     
     <Route path='/gastos/crear' element={<CreateExpense/>}></Route>
+    
     </Routes>
 
     </div>

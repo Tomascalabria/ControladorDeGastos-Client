@@ -1,33 +1,51 @@
 var express = require('express');
-const { db } = require('../Models/Expenses');
-const Expenses = require('../Models/Expenses');
+const { isValidObjectId } = require('mongoose');
+const Expense = require('../Models/Expense');
 
-const Expense = require('../Models/Expenses');
 var router = express.Router();
 
 /* GET All products. */
 router.get('/',(req, res)=> {
-    const colection= Expenses.find({}, function(err, documents) {
+    const colection= Expense.find({}, function(err, documents) {
         res.send(documents);
       });
 
 }
 )
 
-
-
+router.delete('/delete/:_id',async(req,res)=>{
+    try{
+        const expense= await Expense.findById(req.params._id)
+    if(req.headers.username==expense.creator||req.headers.admin==true){
+            await expense.delete() 
+      
+res.status(201).json(`Item deleted succesfully ${deletedItem.title}`)
+    }
+    else{
+        res.status(401).json('Sorry but you are not able to perform this action')
+    }
+    }
+    catch(err){
+        res.send(err)
+    }
+})
 
 
 router.post('/create',async(req,res)=>{
     const newExpense=new Expense({
         title:req.body.title,
-        description:req.body.description,
+        type:req.body.type,
         category:req.body.category,
-        amount:req.body.amount
+        amount:req.body.amount,
+        creator:req.body.creator
+        
     })  
+
     try{
+        
         let savedExpense= await newExpense.save()
         res.status(201).json('Gasto Creado! \n'  + savedExpense)
+        console.log(savedExpense)
     }
     catch(err){
         res.status(402).json('There has been an error')

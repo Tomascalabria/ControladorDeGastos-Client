@@ -11,7 +11,7 @@ const getItems=async ()=>{
     const data =await axios.get('expenses/')
     const parsedData=await data.data
     //in this case it is not necesary to parse data as API is sending response as JSON.
-    setExpenses(parsedData)
+     setExpenses(parsedData)
     console.log(parsedData)
   }
   catch(err){
@@ -43,10 +43,11 @@ getItems()
     <Thead>
     <Tr>
     <Th>Titulo</Th>
-    
     <Th>Monto</Th>
     <Th>Categoria</Th>
-
+    <Th>Tipo</Th>
+    
+    
     </Tr>
     </Thead>
       {expenses.map((expense)=><Expense {...expense} key={expense._id} />)}

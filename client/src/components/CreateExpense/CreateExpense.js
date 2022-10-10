@@ -1,18 +1,24 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import axios from 'axios'
-import {Box,Button,Container,FormControl,FormLabel,Heading,Select,Input,Stack,useBreakpointValue} from '@chakra-ui/react'
+import {Box,Button,Container,FormControl,FormLabel,Heading,Select,Input,Stack,useBreakpointValue,Alert,AlertIcon,AlertTitle,AlertDescription} from '@chakra-ui/react'
+import { AuthContext } from '../../Context/AuthContext'
 
 
 export const CreateExpense = () => {
-
+const {user}=useContext(AuthContext)
 const title=useRef()
 const tipo=useRef()
 const monto=useRef()
+const categoria=useRef()
+const [status,setStatus]=useState(false)
 
 const submitGasto=(e)=>{
   e.preventDefault()
-axios.post('/expenses/create/',{title:title.current.value,amount:monto.current.value,category:tipo.current.value})
-.then((res)=>{if(res.status===201){console.log(`Data sent! ${res.data}`)}})
+  console.log({title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:categoria.current.value,creator:user.userInfo.username})
+axios.post('/expenses/create/',{title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:categoria.current.value,creator:user.userInfo.username})
+.then((res)=>{if(res.status===201){console.log(`Data sent! ${res.data}`,setStatus(res.status))}}
+)
+
 .catch((err)=>{
   console.log(err)
 })
@@ -69,20 +75,25 @@ axios.post('/expenses/create/',{title:title.current.value,amount:monto.current.v
           <Stack spacing="6">
             <Stack spacing="5">
               <FormControl>
-                <FormLabel htmlFor="username">Titulo</FormLabel>
+                <FormLabel htmlFor="text">Titulo</FormLabel>
                 <Input id="title" type="title" name='title' ref={title} />
               </FormControl >
            
               <FormControl>
-                <Select ref={tipo} placeholder='Tipo de gasto'>
+                <FormLabel htmlFor="text">Categoria</FormLabel>
+                <Input id="category" type="category" name='category' ref={categoria} />
+              </FormControl >
+           
+              <FormControl>
+                <Select ref={tipo} placeholder='Tipo de gasto' required='True'>
                   <option  type='ingreso' id='ingreso' name='ingreso'>Ingreso</option>
                   <option type='egreso'id='egreso' name='egreso'>Egreso</option>
                 </Select>
               </FormControl >
             
               <FormControl>
-                <FormLabel htmlFor="monto">Monto</FormLabel>
-                <Input id="monto" type="monto" name='monto' ref={monto} />
+                <FormLabel htmlFor="number">Monto</FormLabel>
+                <Input id="monto" type="number" name='monto' ref={monto} />
               </FormControl >
 
               
@@ -96,7 +107,24 @@ axios.post('/expenses/create/',{title:title.current.value,amount:monto.current.v
           </Stack>
           </form>
                   </Box>
-     
+                  {status===201?
+      <Alert
+      status='success'
+      variant='subtle'
+      flexDirection='column'
+      alignItems='center'
+      justifyContent='center'
+      textAlign='center'
+      height='200px'
+    >
+      <AlertIcon boxSize='40px' mr={0} />
+      <AlertTitle mt={4} mb={1} fontSize='lg'>
+        Felicitaciones!
+      </AlertTitle>
+      <AlertDescription maxWidth='sm'>
+        Su gasto ha sido creado exitosamente.
+      </AlertDescription>
+    </Alert>:<></>}
 </Stack>
 </Container>
   )
