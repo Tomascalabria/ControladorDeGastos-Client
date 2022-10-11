@@ -2,8 +2,6 @@ import React, { useContext, useRef, useState } from 'react'
 import axios from 'axios'
 import {Box,Button,Container,FormControl,FormLabel,Heading,Select,Input,Stack,useBreakpointValue,Alert,AlertIcon,AlertTitle,AlertDescription} from '@chakra-ui/react'
 import { AuthContext } from '../../Context/AuthContext'
-
-
 export const CreateExpense = () => {
 const {user}=useContext(AuthContext)
 const title=useRef()

@@ -12,15 +12,12 @@ import {
   import { Link } from 'react-router-dom'
   import * as React from 'react'
   import { FiMenu } from 'react-icons/fi'
-import { ContactButon } from './NavItems/ContactButon'
 
   export const DefaultNavBar = () => {
     const isDesktop = useBreakpointValue({
       base: false,
       lg: true,
     })
-const categories=[{name:'Remeras',index:0},{name:'Pantalones',index:1},{name:'zapatillas',index:2},{name:'Accesorios',index:3}]
-const genres=[{genre:'Mujer',index:0},{genre:'Hombre',index:1},{genre:'Unisex',index:2}]
     return (
       <Box
         as="section"
@@ -46,7 +43,7 @@ const genres=[{genre:'Mujer',index:0},{genre:'Hombre',index:1},{genre:'Unisex',i
                 <Flex justifyContent='space-between' width='xxl' display='inline-Flex'  alignItems='center' >
                   <ButtonGroup variant="link" spacing="8">
                     {['Inicio' ].map((item) => (
-                      <Link key={item}  to={item==='Inicio'?'/':item}>
+                      <Link key={item}  to={'/'}>
                         {item} 
 
                       </Link>
