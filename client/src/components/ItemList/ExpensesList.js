@@ -1,17 +1,21 @@
 import { Flex,TableContainer,Table,Thead,Th,Tr} from '@chakra-ui/react'
 import axios from 'axios'
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useContext} from 'react'
+import { AuthContext } from '../../Context/AuthContext'
 import { Expense } from './Expense'
 export const ExpensesList = () => {
     const [expenses,setExpenses]=useState([])
+    const {user}=useContext(AuthContext)
 const getItems=async ()=>{
   try{
-
+// Right now we are receiving all the expenses and filtering by the username but we should only receive the one from the username --> that will be modified
     const data =await axios.get('/expenses/')
-    const parsedData=await data.data
+    const parsedData=data.data
+    const userData=parsedData.filter((expense=>{return expense.creator ===user.userInfo.username}))
+    
     //in this case it is not necesary to parse data as API is sending response as JSON.
-     setExpenses(parsedData)
-    console.log(parsedData)
+     setExpenses(userData)
+    console.log(userData)
   }
   catch(err){
     console.log(err)

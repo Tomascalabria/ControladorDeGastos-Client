@@ -1,13 +1,13 @@
 import {
     Box,
     Button,
-    ButtonGroup,
-    Container,
+    Heading,
     Flex,
     HStack,
     IconButton,
     useBreakpointValue,
     useColorModeValue,
+    Spacer,
   } from '@chakra-ui/react'
   import { Link } from 'react-router-dom'
   import * as React from 'react'
@@ -19,41 +19,30 @@ import {
       lg: true,
     })
     return (
-      <Box
-        as="section"
-        pb={{
-            
-          base: '12',
-          md: '18',
-        }}
-      >
-        <Box as="nav" bg="bg-surface" boxShadow={useColorModeValue('sm', 'sm-dark')}>
-          <Container
-            py={{
-              base: '4',
-              lg: '5',
-            }}
-          >
-            <HStack spacing="40" 
-            
-      justifyContent='center'
-      >
-              <h3 style={{color:'black',fontWeight:'bold ',fontFamily:'monospace',fontSize:'25px', letterSpacing:'2.3   px',justifySelf:'flex-end'}} >ProyectoFinal</h3>
-              {isDesktop ? (
-                <Flex justifyContent='space-between' width='xxl' display='inline-Flex'  alignItems='center' >
-                  <ButtonGroup variant="link" spacing="8">
-                    {['Inicio' ].map((item) => (
-                      <Link key={item}  to={'/'}>
-                        {item} 
-
-                      </Link>
-
-                    ))}
-                  </ButtonGroup>
-                  <ButtonGroup spacing="4" >
-                    <Link to='/login'><Button   variant="ghost" style={{marginLeft:'3rem'}}>Sign in</Button></Link>
+       <Box 
+          as="section"
+          w={'100%'}
+          display={'inline-flex'}
+          justifyContent='flex-start'
+          pb={{
+              
+            base: '12',
+            md: '18',
+          }}
+        >
+          <Box as="nav" bg="bg-surface" w={'100%'} justifyContent='flex-start' display={'inline-flex'}   boxShadow={useColorModeValue('sm', 'sm-dark')} >
+            <Flex py={{ base: '4', lg: '5' }} w={'100%'} justifyContent='space-evenly' >
+                    <Spacer />
+              <Box p='3'  ><Link to={'/'}><Heading size='md' style={{color:'black',fontWeight:'bold ',fontFamily:'monospace',fontSize:'25px', letterSpacing:'2.3px' }}>Anotador de Gastos</Heading></Link></Box>
+          
+                    {isDesktop ? (
+                    <Flex justifyContent='space-evenly' width='65%' display='inline-Flex'  alignItems='center' >
+                    
+       
+                  <HStack spacing="4" >
+                    <Link to='/login'><Button   variant="ghost" style={{marginLeft:'6em'}}>Sign in</Button></Link>
                     <Link to='register'><Button variant="ghost" >Sign up</Button></Link>
-                  </ButtonGroup>
+                  </HStack>
                 </Flex>
               ) : (
                 <IconButton
@@ -62,8 +51,7 @@ import {
                   aria-label="Open Menu"
                 />
               )}
-            </HStack>
-          </Container>
+            </Flex>
         </Box>
       </Box>
     )

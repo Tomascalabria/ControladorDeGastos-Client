@@ -1,7 +1,7 @@
 **APP DE CONTROL DE GASTOS**
- - Este es un proyecto personal para añadir y controlar gastos. En el cual un usuario se podrá loguear y revisar todos sus gastos, así como tambien editarlos, eliminarlos y/o compartir gastos con sus amigos.
+ - Este es un proyecto personal bastante basico para añadir y controlar gastos. En el cual un usuario se podrá loguear y revisar todos sus gastos, así como tambien editarlos, eliminarlos y/o compartir gastos con sus amigos.
  
-Tecnologias utilizadas:
+Tecnologias y librerias utilizadas:
 1. Para el FrontEnd:
  - React JS 
  - Chackra UI
@@ -10,7 +10,8 @@ Tecnologias utilizadas:
 2. Para el Backend: 
  - Express 
  - Crypto-js
+ - WebToken 
  - Cors
 
-3. Para la Base de datos ( - Base de datos no-relacional)
- - Mongo DB
+3. Para la Base de datos: 
+ - Una base de datos no-relacional: *Mongo DB*

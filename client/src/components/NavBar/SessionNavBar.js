@@ -1,6 +1,6 @@
 import React,{useContext} from 'react'
   import {
-        Box,Button,ButtonGroup,WrapItem,Avatar,Container,Flex,HStack,IconButton,useBreakpointValue,useColorModeValue, ListItem,} from '@chakra-ui/react'
+        Box,Button,ButtonGroup,WrapItem,Avatar,Container,Flex,HStack,IconButton,useBreakpointValue,useColorModeValue, Spacer,Heading,} from '@chakra-ui/react'
       import { Link } from 'react-router-dom'
       import { FiMenu } from 'react-icons/fi'
     import { ContactButon } from './NavItems/ContactButon'
@@ -23,29 +23,24 @@ export const SessionNavBar = () => {
 
 
         return (
-          <Box
-            as="section"
-            marginTop={'15px'}
-            pb={{
-                
-              base: '12',
-              md: '18',
-            }}
-          >
-            <Box as="nav" bg="bg-surface" boxShadow={useColorModeValue('sm', 'sm-dark')}>
-              <Container
-                py={{
-                  base: '4',
-                  lg: '5',
-                }}
-              >
-                <HStack spacing="40" 
-                
-          justifyContent='center'
-          >
-                  <h3 style={{color:'black',fontWeight:'bold ',fontFamily:'monospace',fontSize:'25px', letterSpacing:'2.3   px',justifySelf:'flex-end'}} >ProyectoFinal</h3>
-                  {isDesktop ? (
-                    <Flex justifyContent='space-between' width='xxl' display='inline-Flex'  alignItems='center' >
+          <Box 
+          as="section"
+          w={'100%'}
+          display={'inline-flex'}
+          justifyContent='flex-start'
+          pb={{
+              
+            base: '12',
+            md: '18',
+          }}
+        >
+          <Box as="nav" bg="bg-surface" w={'100%'} justifyContent='flex-start' display={'inline-flex'}   boxShadow={useColorModeValue('sm', 'sm-dark')} >
+            <Flex py={{ base: '4', lg: '5' }} w={'100%'} justifyContent='space-evenly' >
+                    <Spacer />
+              <Box p='3'  ><Heading size='md' style={{color:'black',fontWeight:'bold ',fontFamily:'monospace',fontSize:'25px', letterSpacing:'2.3px' }}>Anotador de Gastos</Heading></Box>
+          
+                    {isDesktop ? (
+                    <Flex justifyContent='space-evenly' width='65%' display='inline-Flex'  alignItems='center' >
                       <ButtonGroup variant="link" spacing="8">
                     
               
@@ -76,8 +71,7 @@ export const SessionNavBar = () => {
                       aria-label="Open Menu"
                     />
                   )}
-                </HStack>
-              </Container>
+              </Flex>
             </Box>
           </Box>
         )

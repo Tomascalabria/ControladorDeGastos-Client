@@ -1,5 +1,5 @@
 import  React, { useContext } from 'react' 
-import {Tr,Td,Tbody} from '@chakra-ui/react'
+import {Tr,Td,Tbody, useColorModeValue} from '@chakra-ui/react'
 import axios from 'axios'
 import { AuthContext } from '../../Context/AuthContext'
 
@@ -9,7 +9,7 @@ const {user}=useContext(AuthContext)
 
   const deleteItem= ()=>{   
 
-    axios.delete(`expenses/delete/${_id}`,{headers:{
+    axios.delete(`/expenses/delete/${_id}`,{headers:{
       username:user.userInfo.username,
       admin:user.userInfo.isAdmin
     }})
@@ -27,7 +27,7 @@ const {user}=useContext(AuthContext)
    <Td>${amount}</Td>
    <Td>{category}</Td>
    <Td>{type}</Td>
-   <Td onClick={deleteItem}>x</Td>
+   <Td style={{cursor:'pointer', }} fontWeight='extrabold' color={useColorModeValue('red.500', 'red.300')} onClick={deleteItem}>x</Td>
     
    </Tr>
  
