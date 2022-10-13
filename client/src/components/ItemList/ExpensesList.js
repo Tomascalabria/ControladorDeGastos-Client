@@ -25,7 +25,7 @@ const getItems=async ()=>{
 
 useEffect(()=>{
 getItems()
-},[])
+},[expenses])
 
 
 

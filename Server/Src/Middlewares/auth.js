@@ -43,12 +43,12 @@ router.post('/login',async(req,res)=>{
           id:user._id,  
           admin:user.isAdmin
       },process.env.JWT_SECRET,{expiresIn:'5d'})
-      !user&&res.status(401).json('Wrong username')
+      !user&&res.status(401).json('"Please review your credentials and enter again"')
       const hashedPassword= CryptoJs.AES.decrypt(user.password,process.env.PASSWORD_SECRET)
       const unHashedPassword=hashedPassword.toString(CryptoJs.enc.Utf8)
       let {password,...publicData}=user._doc
 
-      unHashedPassword!==req.body.password?res.status(401).json('wrong password')
+      unHashedPassword!==req.body.password?res.status(401).json('"Please review your credentials and enter again"')
 
       :
 
@@ -57,7 +57,7 @@ router.post('/login',async(req,res)=>{
 
   }
   catch(err){
-      res.status(500).json('Please review your credentials and enter again')
+      res.status(500).json('Internal error')
       console.log('Hubo un error')
   }
 })

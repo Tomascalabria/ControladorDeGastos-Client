@@ -12,7 +12,9 @@ import {
     useBreakpointValue,
     Flex,
     Icon,
-    chakra
+    chakra,
+    Checkbox,
+    CheckboxGroup
     
   } from '@chakra-ui/react'
   import  React,{useContext, useRef} from 'react'
@@ -22,19 +24,23 @@ import { AuthContext } from '../../../Context/AuthContext'
   import { PasswordField } from '../PasswordField'
   
   export const Login = () => {
-    const {user}=useContext(AuthContext)
+    const {user,error}=useContext(AuthContext)
     const {dispatch}=useContext(AuthContext)
     const username=useRef()
     const navigate=useNavigate()
     const password=useRef()
     
+    
     const handleClick=(e)=>{
       e.preventDefault()
 
       loginProcess({username:username.current.value,password:password.current.value},dispatch)
-      setTimeout(() => {
-        navigate('/')
-      }, 0);
+      // setTimeout(() => {
+      //   navigate('/')
+      // }, 0);
+      console.log(error)
+
+
     }
 
  return(
@@ -99,11 +105,13 @@ import { AuthContext } from '../../../Context/AuthContext'
 
               <FormControl >
                 <FormLabel htmlFor="username">Usuario</FormLabel>
-                <Input id="username" type="username" name='username' ref={username}/>
+                <Input id="username" required='required' type="username" ref={username}  name='username' />
                 </FormControl>
               <PasswordField ref={password} />
+            <CheckboxGroup ><Checkbox fontSize={'small'} color='gray.600' >Recordarme</Checkbox></CheckboxGroup>
             </Stack>
-            <HStack justify="space-between">
+            <HStack justify="center " >
+
               <Button variant="link" colorScheme="blue" size="sm">
                 Te olvidaste la pass?
               </Button>
@@ -116,8 +124,57 @@ import { AuthContext } from '../../../Context/AuthContext'
           </Stack>
           </form>
         </Box>
-        {!user?<></>: 
-  <Flex  marginTop='-16rem'
+        {error?
+        <Flex  marginTop='-16rem'
+        justifyContent='center'
+          maxW="sm"
+          w="full"
+          mx="auto"
+          bg="transparent"
+          _dark={{
+            bg: "darkAlpha",
+          }}
+          rounded="lg"
+          overflow="hidden"
+        >
+          <Flex justifyContent="center" alignItems="center" w={12} bg="red.500"  >
+            <Icon  color="white" boxSize={6} />
+          </Flex>
+      
+          <Box mx={-3} py={2} px={4}>
+            <Box mx={3}>
+              <chakra.span
+                color="red.500"
+                _dark={{
+                  color: "red.400",
+                }}
+                fontWeight="bold"
+              >
+                Sorry
+              </chakra.span>
+              <chakra.p
+                color="gray.600"
+                _dark={{
+                  color: "gray.200",
+                }}
+                fontSize="sm"
+                fontWeight={'bold'}
+              >
+                {error.response.data}
+              </chakra.p>
+            </Box>
+          </Box>
+        </Flex>
+      
+        
+        
+        
+        
+        : <></>
+      
+}
+{
+  user? <Flex  marginTop='-16rem'
   justifyContent='center'
     maxW="sm"
     w="full"
@@ -157,7 +214,7 @@ import { AuthContext } from '../../../Context/AuthContext'
       </Box>
     </Box>
   </Flex>
-
+:<></>
 }
       </Stack>
       

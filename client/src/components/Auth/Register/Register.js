@@ -1,13 +1,17 @@
-import {Box,Button,Container,FormControl,FormLabel,Heading,HStack,Input,Stack,Text,useBreakpointValue,Alert,AlertDescription,AlertIcon,AlertTitle} from '@chakra-ui/react'
+import {Box,Button,Container,FormControl,FormLabel,Heading,HStack,Input,Stack,Alert,AlertDescription,AlertIcon,AlertTitle,Text,useBreakpointValue,Flex,Icon,chakra} from '@chakra-ui/react'
 import axios from 'axios'
-  import React,{ useRef, useState} from 'react'
-  import { Link, useNavigate } from 'react-router-dom'
-
-  import { PasswordField } from '../PasswordField'
+import React,{ useRef, useState} from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { PasswordField } from '../PasswordField'
  
 export const Register = () =>{
 const navigate=useNavigate()
 const [status,setStatus]=useState('')
+const [response,setResponse]=useState('')
+const handleChange=()=>{
+  console.log ({Username:username.current.value.length})
+ 
+}
 const username=useRef()
 const email=useRef()
 const password=useRef()
@@ -16,6 +20,7 @@ const handleSubmit=async(e)=>{
 try{
   const res=await axios.post('users/register',{username:username.current.value,email:email.current.value,password:password.current.value})
 setStatus(res.status)
+setResponse(res.data)
 res.status===201?setTimeout(() => {
   navigate('/login', {replace: true});
 }, 4000):<></>
@@ -84,19 +89,21 @@ res.status===201?setTimeout(() => {
                 sm: 'xl',
             }}
             >
+            
           <form onSubmit={handleSubmit}> 
           <Stack spacing="6">
             <Stack spacing="5">
               <FormControl>
                 <FormLabel htmlFor="username">Username</FormLabel>
-                <Input id="username" type="username" name='username' ref={username} />
+                <Input id="username" type="username" name='username' onChange={handleChange} ref={username} />
               </FormControl >
               <FormControl>
               
                 <FormLabel htmlFor="email">Email</FormLabel>
                 <Input id="email" type="email" name='email' ref={email} />
               </FormControl>
-              <PasswordField ref={password} />
+              <PasswordField ref={password}  />
+              
             </Stack>
             
             <Stack spacing="6">
@@ -123,7 +130,47 @@ res.status===201?setTimeout(() => {
       <AlertDescription maxWidth='sm'>
         Su usuario ha sido registrado exitosamente.
       </AlertDescription>
-    </Alert>:<></>}
+    </Alert>:status==401?
+     <Flex  marginTop='-16rem'
+        justifyContent='center'
+          maxW="sm"
+          w="full"
+          mx="auto"
+          bg="transparent"
+          _dark={{
+            bg: "darkAlpha",
+          }}
+          rounded="lg"
+          overflow="hidden"
+        >
+          <Flex justifyContent="center" alignItems="center" w={12} bg="red.500"  >
+            <Icon  color="white" boxSize={6} />
+          </Flex>
+      
+          <Box mx={-3} py={2} px={4}>
+            <Box mx={3}>
+              <chakra.span
+                color="red.500"
+                _dark={{
+                  color: "red.400",
+                }}
+                fontWeight="bold"
+              >
+                Sorry
+              </chakra.span>
+              <chakra.p
+                color="gray.600"
+                _dark={{
+                  color: "gray.200",
+                }}
+                fontSize="sm"
+                fontWeight={'bold'}
+              >
+                {response.response}
+              </chakra.p>
+            </Box>
+          </Box>
+        </Flex>:<></>}
     
 </Stack>
 </Container>
