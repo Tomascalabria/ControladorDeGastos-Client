@@ -5,11 +5,17 @@ const Expense = require('../Models/Expense');
 var router = express.Router();
 
 /* GET All products. */
-router.get('/',(req, res)=> {
-    const colection= Expense.find({}, function(err, documents) {
-        res.send(documents);
-      });
+router.get('/',async(req, res)=> {
+ try{
 
+     const user=req.headers.username
+     const colection= Expense.find({creator:user}, function(err, documents) {
+         res.send(documents);
+       });
+ }
+catch(err){
+    res.status(500).json('We are sorry there was an internal server error')
+}
 }
 )
 

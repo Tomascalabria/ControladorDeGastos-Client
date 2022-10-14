@@ -6,7 +6,7 @@ import { AuthContext } from '../../Context/AuthContext'
 
 export const Expense= ({title,type,amount,category,_id })=> {
 const {user}=useContext(AuthContext)  
-const [expenses,setExpenses]=useState
+const [expenses,setExpenses]=useState([])
   const deleteItem= ()=>{   
 
     axios.delete(`/expenses/delete/${_id}`,{headers:{
@@ -17,9 +17,6 @@ const [expenses,setExpenses]=useState
     .catch((err)=>{console.log(err)})
    }  
 
-useEffect(() => {
-  deleteItem
-  },[expenses])
 
  return( 
   <>

@@ -6,26 +6,28 @@ import { Expense } from './Expense'
 export const ExpensesList = () => {
     const [expenses,setExpenses]=useState([])
     const {user}=useContext(AuthContext)
-const getItems=async ()=>{
-  try{
-// Right now we are receiving all the expenses and filtering by the username but we should only receive the one from the username --> that will be modified
-    const data =await axios.get('/expenses/')
-    const parsedData=data.data
-    const userData=parsedData.filter((expense=>{return expense.creator ===user.userInfo.username}))
-    
-    //in this case it is not necesary to parse data as API is sending response as JSON.
-     setExpenses(userData)
-    console.log(userData)
-  }
-  catch(err){
-    console.log(err)
-  }
-}
 
 
+  const getItems=async ()=>{
+    try{
+  // Right now we are receiving all the expenses and filtering by the username but we should only receive the one from the username --> that will be modified
+      const data =await axios.get('/expenses/',{headers:{
+        username:user.userInfo.username
+      }})
+      const parsedData=data.data
+
+      
+      //in this case it is not necesary to parse data as API is sending response as JSON.
+       setExpenses(parsedData)
+      console.log(parsedData)
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
 useEffect(()=>{
 getItems()
-},[expenses])
+},[])
 
 
 
@@ -53,7 +55,7 @@ getItems()
     
     </Tr>
     </Thead>
-      {expenses.map((expense)=><Expense {...expense} key={expense._id} />)}
+      {expenses.map((expense)=><Expense props={{expenses,setExpenses}} {...expense} key={expense._id} />)}
     
     </Table>
     </TableContainer>
