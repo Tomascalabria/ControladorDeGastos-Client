@@ -9,7 +9,7 @@ export const ExpensesContactButon = ({expenses}) => {
   return (
 <>
   <Menu isOpen={isOpen}>
-            <MenuButton
+            <MenuButton key={expenses.index}
                 variant="ghost"
                 mx={3}
                 py={[1, 2, 2]}

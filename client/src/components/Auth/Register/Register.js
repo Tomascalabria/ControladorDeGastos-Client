@@ -18,7 +18,7 @@ const password=useRef()
 const handleSubmit=async(e)=>{
   e.preventDefault()
 try{
-  const res=await axios.post('users/register',{username:username.current.value,email:email.current.value,password:password.current.value})
+  const res=await axios.post('users/register',{username:(username.current.value).toLowerCase(),email:(email.current.value).toLowerCase(),password:password.current.value})
 setStatus(res.status)
 setResponse(res.data)
 res.status===201?setTimeout(() => {

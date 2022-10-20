@@ -34,11 +34,7 @@ import { AuthContext } from '../../../Context/AuthContext'
     const handleClick=(e)=>{
       e.preventDefault()
 
-      loginProcess({username:username.current.value,password:password.current.value},dispatch)
-      // setTimeout(() => {
-      //   navigate('/')
-      // }, 0);
-      console.log(error)
+      loginProcess({username:(username.current.value).toLowerCase(),password:password.current.value},dispatch)
 
 
     }

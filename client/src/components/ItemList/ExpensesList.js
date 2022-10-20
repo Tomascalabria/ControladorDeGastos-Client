@@ -15,11 +15,8 @@ export const ExpensesList = () => {
         username:user.userInfo.username
       }})
       const parsedData=data.data
-
-      
       //in this case it is not necesary to parse data as API is sending response as JSON.
        setExpenses(parsedData)
-      console.log(parsedData)
     }
     catch(err){
       console.log(err)

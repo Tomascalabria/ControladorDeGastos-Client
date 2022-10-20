@@ -8,6 +8,7 @@ import { useContext } from 'react';
 import { ExpensesList } from './components/ItemList/ExpensesList';
 import { CreateExpense } from './components/CreateExpense/CreateExpense';
 import { Home } from './components/Home/Home';
+import { UserProfile } from './UserProfile/UserProfile';
 
 function App() {
 const {user}=useContext(AuthContext)
@@ -19,13 +20,15 @@ const {user}=useContext(AuthContext)
 <Routes>
   <Route path='/' element={<Home/>}></Route>
    
-   {!user?<Route path='/login' element={<Login/>}></Route>:<></>}
+   {!user?<Route path='/login' element={<Login/>}></Route>
+
+   :<></>}
   <Route path='/register' element={<Register/>}></Route>
     
     <Route path='/gastos/crear' element={<CreateExpense/>}></Route>
     <Route path='/gastos/ver' element={<ExpensesList/>}></Route>
+    <Route path='/profile' element={<UserProfile/>}></Route>
     <Route path="*" element={<Navigate to="/" replace />}></Route>
-
     </Routes>
 
     </div>

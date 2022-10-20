@@ -1,17 +1,22 @@
-import React,{useContext} from 'react'
+import React,{useContext, useRef} from 'react'
   import {
-        Box,Button,ButtonGroup,WrapItem,Avatar,Container,Flex,HStack,IconButton,useBreakpointValue,useColorModeValue, Spacer,Heading,} from '@chakra-ui/react'
-      import { Link } from 'react-router-dom'
+        Box,Button,ButtonGroup,WrapItem,Avatar,Flex,HStack,IconButton,useBreakpointValue,useColorModeValue, Spacer,Heading, useDisclosure,} from '@chakra-ui/react'
+      import { Link, useNavigate } from 'react-router-dom'
       import { FiMenu } from 'react-icons/fi'
     import { ContactButon } from './NavItems/ContactButon'
 import { AuthContext } from '../../Context/AuthContext'
 import { logoutProcess } from '../../Context/ApiCall'
 import { ExpensesContactButon } from './NavItems/ExpensesContactButon'
+import { UserProfile } from '../../UserProfile/UserProfile'
     
 export const SessionNavBar = () => {
+  const navigate=useNavigate()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const btnRef = useRef()
   const {user,dispatch} =useContext(AuthContext)
   const handleLogout=()=>{
     logoutProcess(dispatch)
+    navigate('/')
   }
   
   const expenses=[{name:'Crear Gasto',index:0,route:'/gastos/crear'},{name:'Ver gastos',index:1,route:'/gastos/ver'},{name:'Agregar amigos',index:2,route:'/gastos/agregarAmigos'}]
@@ -53,13 +58,14 @@ export const SessionNavBar = () => {
                         <ContactButon/>
                         </ButtonGroup>
                         <ButtonGroup spacing="2">
-                      <ExpensesContactButon expenses={expenses}/>
+                      <ExpensesContactButon expenses={expenses}key={expenses.index}/>
                       </ButtonGroup>
        
                       <ButtonGroup spacing="4" marginRight={'3rem'} >
                         
                         <WrapItem>
-                     <Avatar  name={user.username}src={user.profile_picture} />
+                     
+                        <UserProfile/>
                         </WrapItem>
                         <Button variant="ghost" onClick={handleLogout} >Logout</Button>
                         </ButtonGroup>
