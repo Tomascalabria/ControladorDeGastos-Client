@@ -8,7 +8,8 @@ import { Button, useDisclosure,Avatar ,Drawer,DrawerOverlay,DrawerContent,Drawer
 import React, { useContext, useRef} from 'react'
 import { AuthContext } from '../Context/AuthContext'
 import { EmailEditLabel } from './EmailEditLabel'
-import { FileUpload } from './FileUpload'
+import { FileUpload } from './ProfileImageEdit.js/FileUpload'
+import { ImageEditModal } from './ProfileImageEdit.js/ImageEditModal'
 import { ProfileEditLabel, UsernameEditLabel } from './UsernameEditLabel'
 
 export const UserProfile = () => {
@@ -22,7 +23,7 @@ export const UserProfile = () => {
     <Avatar name={user.username}src={user.userInfo.profile_picture} onClick={onOpen} ref={btnRef}/>
       
           <Drawer
-          size={'lg'}
+          size={'md'}
             
             isOpen={isOpen}
             placement='right'
@@ -36,18 +37,18 @@ export const UserProfile = () => {
                 
               <Flex marginTop={'3rem'} display={'inline-flex'} w='100%' justifyContent={'space-between'}>
                 <Text>Editar Perfil</Text>
-                <Avatar name={user.username}src={user.userInfo.profile_picture} />
+                <ImageEditModal/>
                 </Flex>
                 </DrawerHeader>
            
-              <DrawerBody display={'flex'}flexDir='column' alignContent={'center'} marginTop='5rem' >
+              <DrawerBody display={'flex'}flexDir='column' w='95' alignContent={'center'} marginTop='5rem' >
                 <Flex display={'inline-flex'} textAlign={'center'}  justifyContent={'space-between'}  alignItems={'center'}>
                <FormLabel alignItems={'center'}  marginTop={'0.5rem'} fontSize={'md'}>Username: </FormLabel>
               <UsernameEditLabel/>
                </Flex>
 
                <Flex display={'inline-flex'} textAlign={'center'}  justifyContent={'space-between'} marginTop='2rem' alignItems={'center'}>
-               <FormLabel alignItems={'center'}  marginTop={'0.5rem'} fontSize={'md'}>Email: </FormLabel>
+               <FormLabel alignItems={'center'} marginTop={'0.5rem'} fontSize={'md'}>Email: </FormLabel>
               <EmailEditLabel/>
                
                </Flex>

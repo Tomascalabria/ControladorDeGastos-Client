@@ -26,8 +26,8 @@ export const EmailEditLabel=()=> {
           <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
         </ButtonGroup>
       ) : (
-        <Flex justifyContent='left' alignItems={'center'}  display={'inline-flex'}>
-          <IconButton   size='sm' icon={<EditIcon />} {...getEditButtonProps()} />
+        <Flex justifyContent='left' alignItems={'center'} marginLeft='0.8rem'  display={'inline-flex'}>
+          <IconButton    size='sm' icon={<EditIcon />} {...getEditButtonProps()} />
         </Flex>
       )
     }
@@ -42,7 +42,7 @@ export const EmailEditLabel=()=> {
         isPreviewFocusable={false}
       >
         <EditablePreview  marginLeft={'2rem'} alignItems='center' fontSize={'md'}/>
-        {/* Here is the custom input */}
+   
         <Input as={EditableInput}  />
         <EditableControls  />
       </Editable>

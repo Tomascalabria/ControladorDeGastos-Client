@@ -8,6 +8,7 @@ import { AuthContext } from '../../Context/AuthContext'
 import { logoutProcess } from '../../Context/ApiCall'
 import { ExpensesContactButon } from './NavItems/ExpensesContactButon'
 import { UserProfile } from '../../UserProfile/UserProfile'
+import { ModalMenu } from './ModalMenu.js'
     
 export const SessionNavBar = () => {
   const navigate=useNavigate()
@@ -71,12 +72,7 @@ export const SessionNavBar = () => {
                         </ButtonGroup>
                     </Flex>
                   ) : (
-                    <IconButton
-                      variant="ghost"
-                      icon={<FiMenu fontSize="1.25rem" />}
-                      aria-label="Open Menu"
-                    />
-                  )}
+                    <ModalMenu/>                  )}
               </Flex>
             </Box>
           </Box>
