@@ -4,14 +4,13 @@ import {
     Heading,
     Flex,
     HStack,
-    IconButton,
     useBreakpointValue,
     useColorModeValue,
     Spacer,
   } from '@chakra-ui/react'
   import { Link } from 'react-router-dom'
   import * as React from 'react'
-  import { FiMenu } from 'react-icons/fi'
+import { ModalDefaultMenu } from './ModalDefaultMenu.js'
 
   export const DefaultNavBar = () => {
     const isDesktop = useBreakpointValue({
@@ -45,11 +44,7 @@ import {
                   </HStack>
                 </Flex>
               ) : (
-                <IconButton
-                  variant="ghost"
-                  icon={<FiMenu fontSize="1.25rem" />}
-                  aria-label="Open Menu"
-                />
+                <ModalDefaultMenu/>
               )}
             </Flex>
         </Box>

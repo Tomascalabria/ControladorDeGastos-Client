@@ -20,7 +20,7 @@ export const UserProfile = () => {
     
       return (
         <>
-    <Avatar name={user.username}src={user.userInfo.profile_picture} onClick={onOpen} ref={btnRef}/>
+    <Avatar name={user.username}src={user.userInfo.profile_picture} onClick={onOpen} ref={btnRef} cursor='pointer'/>
       
           <Drawer
           size={'md'}

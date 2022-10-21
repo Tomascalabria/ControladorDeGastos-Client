@@ -1,20 +1,16 @@
-import React,{useContext, useRef} from 'react'
+import React,{useContext} from 'react'
   import {
-        Box,Button,ButtonGroup,WrapItem,Avatar,Flex,HStack,IconButton,useBreakpointValue,useColorModeValue, Spacer,Heading, useDisclosure,} from '@chakra-ui/react'
+        Box,Button,ButtonGroup,WrapItem,Flex,useBreakpointValue,useColorModeValue, Spacer,Heading} from '@chakra-ui/react'
       import { Link, useNavigate } from 'react-router-dom'
-      import { FiMenu } from 'react-icons/fi'
-    import { ContactButon } from './NavItems/ContactButon'
-import { AuthContext } from '../../Context/AuthContext'
-import { logoutProcess } from '../../Context/ApiCall'
-import { ExpensesContactButon } from './NavItems/ExpensesContactButon'
-import { UserProfile } from '../../UserProfile/UserProfile'
-import { ModalMenu } from './ModalMenu.js'
+import { AuthContext } from '../../../Context/AuthContext'
+import { logoutProcess } from '../../../Context/ApiCall'
+import { ExpensesContactButon } from './ExpensesContactButon.js'
+import { UserProfile } from '../../../UserProfile/UserProfile'
+import { ModalMenu } from './ModalMenu'
     
 export const SessionNavBar = () => {
   const navigate=useNavigate()
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = useRef()
-  const {user,dispatch} =useContext(AuthContext)
+  const {dispatch} =useContext(AuthContext)
   const handleLogout=()=>{
     logoutProcess(dispatch)
     navigate('/')
@@ -55,9 +51,7 @@ export const SessionNavBar = () => {
                           </Link>
 
                       </ButtonGroup>
-                      <ButtonGroup spacing="4" marginRight={'3rem'} >
-                        <ContactButon/>
-                        </ButtonGroup>
+                   
                         <ButtonGroup spacing="2">
                       <ExpensesContactButon expenses={expenses}key={expenses.index}/>
                       </ButtonGroup>
@@ -72,7 +66,7 @@ export const SessionNavBar = () => {
                         </ButtonGroup>
                     </Flex>
                   ) : (
-                    <ModalMenu/>                  )}
+                    <ModalMenu props={{handleLogout}}/>                  )}
               </Flex>
             </Box>
           </Box>

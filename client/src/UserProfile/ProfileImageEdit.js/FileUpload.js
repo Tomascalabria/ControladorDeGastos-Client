@@ -12,12 +12,12 @@ export const  FileUpload=({ onFileAccepted })=> {
     onDrop, accept: '.torrent', maxFiles: 1, multiple: false,
   });
 
-  const dropText = isDragActive ? 'Drop the files here ...' : 'Drag \'n\' drop .torrent file here, or click to select files';
+  const dropText = isDragActive ?  'Drop the files here ...' : 'Drag your selected image into here, or click to select files';
 
   const activeBg = useColorModeValue('gray.100', 'gray.600');
   const borderColor = useColorModeValue(
-    isDragActive ? 'teal.900' : 'gray.300',
-    isDragActive ? 'teal.500' : 'Black.500',
+    isDragActive ? 'teal.900' : 'gray.400',
+    isDragActive ? 'Black.500' : 'Black.500',
   );
 
   return (
@@ -25,17 +25,18 @@ export const  FileUpload=({ onFileAccepted })=> {
       p={10}
       width='50%'
       cursor="pointer"
+      
       bg={isDragActive ? activeBg : 'transparent'}
       _hover={{ bg: activeBg }}
-      transition="background-color 0.2s ease"
-      borderRadius={4}
+      transition="background-color 0.3s ease"
+      borderRadius={4} 
       border="3px dashed"
       borderColor={borderColor}
       {...getRootProps()}
     >
       <input {...getInputProps()} />
-      <Icon as={AiFillFileAdd} mr={2} />
-      <p>{dropText}</p>
+      <Icon as={AiFillFileAdd}  />
+      <p >{dropText} </p>
     </Center>
   );
 }
