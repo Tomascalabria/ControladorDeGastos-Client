@@ -11,7 +11,7 @@ export const ExpensesList = () => {
   const getItems=async ()=>{
     try{
   // Right now we are receiving all the expenses and filtering by the username but we should only receive the one from the username --> that will be modified
-      const data =await axios.get('/expenses/',{headers:{
+      const data =await axios.get('https://controladorgastosapi.herokuapp.com//expenses/',{headers:{
         username:user.userInfo.username
       }})
       const parsedData=data.data
