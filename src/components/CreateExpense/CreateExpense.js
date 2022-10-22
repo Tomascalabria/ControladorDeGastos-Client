@@ -13,7 +13,7 @@ const [status,setStatus]=useState(false)
 const submitGasto=(e)=>{
   e.preventDefault()
   console.log({title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:categoria.current.value,creator:user.userInfo.username})
-axios.post('https://controladorgastosapi.herokuapp.com//expenses/create/',{title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:categoria.current.value,creator:user.userInfo.username})
+axios.post('https://controladorgastosapi.herokuapp.com/expenses/create/',{title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:categoria.current.value,creator:user.userInfo.username})
 .then((res)=>{if(res.status===201){console.log(`Data sent! ${res.data}`,setStatus(res.status))}}
 )
 
