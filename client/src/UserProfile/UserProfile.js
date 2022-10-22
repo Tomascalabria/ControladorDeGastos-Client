@@ -8,7 +8,7 @@ import { Button, useDisclosure,Avatar ,Drawer,DrawerOverlay,DrawerContent,Drawer
 import React, { useContext, useRef} from 'react'
 import { AuthContext } from '../Context/AuthContext'
 import { EmailEditLabel } from './EmailEditLabel'
-import { FileUpload } from './ProfileImageEdit.js/FileUpload'
+// import { FileUpload } from './ProfileImageEdit.js/FileUpload'
 import { ImageEditModal } from './ProfileImageEdit.js/ImageEditModal'
 import { ProfileEditLabel, UsernameEditLabel } from './UsernameEditLabel'
 
@@ -17,7 +17,8 @@ export const UserProfile = () => {
     console.log(user.userInfo)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = useRef()
-    
+    const email=useRef()
+    const username=useRef()
       return (
         <>
     <Avatar name={user.username}src={user.userInfo.profile_picture} onClick={onOpen} ref={btnRef} cursor='pointer'/>

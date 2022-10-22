@@ -30,8 +30,8 @@ import { ModalDefaultMenu } from './ModalDefaultMenu.js'
           }}
         >
           <Box as="nav" bg="bg-surface" w={'100%'} justifyContent='flex-start' display={'inline-flex'}   boxShadow={useColorModeValue('sm', 'sm-dark')} >
-            <Flex py={{ base: '4', lg: '5' }} w={'100%'} justifyContent='space-evenly' >
-                    <Spacer />
+            <Flex py={{ base: '4', lg: '5' }} w={'100%'} justifyContent='space-around' >
+                  
               <Box p='3'  ><Link to={'/'}><Heading size='md' style={{color:'black',fontWeight:'bold ',fontFamily:'monospace',fontSize:'25px', letterSpacing:'2.3px' }}>Anotador de Gastos</Heading></Link></Box>
           
                     {isDesktop ? (

@@ -1,3 +1,4 @@
+import  React from 'react'
 import {
     FormControl,
     FormLabel,
@@ -7,7 +8,6 @@ import {
     InputRightElement,
     useDisclosure,
   } from '@chakra-ui/react'
-  import * as React from 'react'
   import { HiEye, HiEyeOff } from 'react-icons/hi'
   
   export const PasswordField = React.forwardRef((props, ref) => {

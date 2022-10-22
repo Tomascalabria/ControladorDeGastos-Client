@@ -8,7 +8,7 @@ export const  FileUpload=({ onFileAccepted })=> {
     onFileAccepted(acceptedFiles[0]);
   }, [onFileAccepted]);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop, accept: '.torrent', maxFiles: 1, multiple: false,
   });
 
