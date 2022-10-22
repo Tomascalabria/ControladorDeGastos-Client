@@ -1,6 +1,6 @@
 import React,{useContext} from 'react'
   import {
-        Box,Button,ButtonGroup,WrapItem,Flex,useBreakpointValue,useColorModeValue, Spacer,Heading} from '@chakra-ui/react'
+        Box,Button,ButtonGroup,WrapItem,Flex,useBreakpointValue,useColorModeValue,Heading} from '@chakra-ui/react'
       import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../../Context/AuthContext'
 import { logoutProcess } from '../../../Context/ApiCall'

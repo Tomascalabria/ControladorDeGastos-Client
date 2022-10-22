@@ -1,4 +1,4 @@
-import  React, { useContext, useEffect, useState } from 'react' 
+import  React, { useContext, useState } from 'react' 
 import {Tr,Td,Tbody, useColorModeValue} from '@chakra-ui/react'
 import axios from 'axios'
 import { AuthContext } from '../../Context/AuthContext'
@@ -8,8 +8,8 @@ export const Expense= ({title,type,amount,category,_id })=> {
 const {user}=useContext(AuthContext)  
 const [expenses,setExpenses]=useState([])
   const deleteItem= ()=>{   
-
-    axios.delete(`/expenses/delete/${_id}`,{headers:{
+console.log(expenses)
+    axios.delete(`https://controladorgastosapi.herokuapp.com/expenses/delete/${_id}`,{headers:{
       username:user.userInfo.username,
       admin:user.userInfo.isAdmin
     }})

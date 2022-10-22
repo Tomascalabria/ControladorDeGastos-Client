@@ -2,9 +2,8 @@ import React, { useContext } from 'react'
 import {
     Editable,
     EditableInput,
-    EditableTextarea,
     EditablePreview,
-    ButtonGroup,useEditable,useEditableControls,Input,Flex,IconButton
+    ButtonGroup,useEditableControls,Input,Flex,IconButton
   } from '@chakra-ui/react'
 import {CheckIcon,CloseIcon,EditIcon} from '@chakra-ui/icons'
 import { AuthContext } from '../Context/AuthContext'
