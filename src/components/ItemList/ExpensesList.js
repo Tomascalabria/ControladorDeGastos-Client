@@ -56,7 +56,7 @@ useEffect(()=>{
     </Tr>
     </Thead>
       {expenses.map((expense)=><Expense props={{expenses,setExpenses}} {...expense} key={expense._id} />)}
-    
+        
     </Table>
     </TableContainer>
 

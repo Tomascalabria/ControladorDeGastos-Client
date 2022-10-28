@@ -132,7 +132,7 @@ import { AuthContext } from '../../../Context/AuthContext'
           }}
           rounded="lg"
           overflow="hidden"
-        >
+        > 
           <Flex justifyContent="center" alignItems="center" w={12} bg="red.500"  >
             <Icon  color="white" boxSize={6} />
           </Flex>

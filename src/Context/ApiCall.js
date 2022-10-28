@@ -5,8 +5,8 @@ export const loginProcess=async(userCrentials,dispatch)=>{
     dispatch({type:'LOGIN_START'})
     try{
      const response=await axios.post('https://controladorgastosapi.herokuapp.com/users/login',userCrentials)
-        dispatch({type:'LOGIN_SUCCESS',payload:response.data},window.localStorage.setItem('token',JSON.stringify(response.data.webtoken)))
-        
+        dispatch({type:'LOGIN_SUCCESS',payload:response.data},window.localStorage.setItem('token',JSON.stringify(response.data.token)))
+
     }
     catch(err){
         dispatch({type:'LOGIN_FAILURE',payload:err,})

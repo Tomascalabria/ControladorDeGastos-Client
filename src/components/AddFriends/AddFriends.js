@@ -1,12 +1,22 @@
 import { Box, Stack,FormControl,FormLabel,Input,useBreakpointValue, Button} from '@chakra-ui/react'
-import React, { useRef } from 'react'
+import axios from 'axios'
+import React, { useContext, useRef } from 'react'
+import { AuthContext } from '../../Context/AuthContext'
 
 export const AddFriends = () => {
-const {friend}=useRef()
-const handleClick=(e)=>{
+const friend=useRef()
+const {user}=useContext(AuthContext)
+
+const handleClick=async (e)=>{
     e.preventDefault()
-console.log('holla')
-}
+  const newFriend= await axios.post(`http://localhost:5050/friends/${user.userInfo._id}/add`,{friend:friend.current.value},{headers:{
+        token:user.token
+      }
+    })
+
+console.log(newFriend.data)
+console.log(newFriend.status)
+  }
     return (
         <Box 
         w={'100%'} 
@@ -20,6 +30,8 @@ console.log('holla')
       >
     <Box
     w={'lg'}
+    display='flex'
+    flexWrap={'wrap'}
     h='sm'
     justifyContent='center'
     py={{
@@ -43,16 +55,19 @@ console.log('holla')
   >
 
 
-    <Stack spacing="6" h='100%' >
+    <Stack h='md'w={'100%'} display='flex' flexWrap='wrap'>
+        <form style={{height:'90%',display:'flex',flexDirection:'column',alignItems:'stretch',flexWrap:'wrap'}} onSubmit={handleClick}>
         
-      <Stack spacing="5" display={'flex'} h='100%'>
-
-        <FormControl onSubmit={handleClick}>
+      <Stack spacing="5" display={'flex'} w='100%' h='80%' flexDir={'column'} justifyContent='space-around'alignContent={'space-between'} >
+        <FormControl display={'flex'} flexDirection='column' alignContent='space-around' justifyContent={'space-around'} alignItems={'flex-start'} height={'35%'} >
           <FormLabel htmlFor="friends">Ingrese el usuario de su amigx</FormLabel>
-          <Input id="friends" onFocus={{background:'Black',color:'red'}} required='true' type="friends" placeholder='Nombre de usuario' ref={friend}  name='friends' />
+          <Input id="friends" required={true} type="text" placeholder='Nombre de usuario' ref={friend}  name='friends' />
           </FormControl>
+          
+          <Button type={'submit'} >Agregar</Button>
           </Stack>
-          <Button >Agregar</Button>
+        
+          </form>
           </Stack>
         </Box>
         </Box>
