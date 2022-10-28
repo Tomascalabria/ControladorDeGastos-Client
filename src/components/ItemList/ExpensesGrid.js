@@ -13,14 +13,17 @@ export const ExpensesGrid = (props) => {
   }, [props.children])
   return (
     <Flex
+    height={'xl'}
       columns={columns}
+      
       columnGap={{
-        base: '4',
-        md: '8',
+      
+        base: '12',
+        md: '14',
       }}
       rowGap={{
-        base: '8',
-        md: '10',
+        base: '12',
+        md: '14',
       }}
       {...props}
     />

@@ -1,13 +1,17 @@
 import {Box,Button,Container,FormControl,FormLabel,Heading,HStack,Input,Stack,Alert,AlertDescription,AlertIcon,AlertTitle,Text,useBreakpointValue,Flex,Icon,chakra} from '@chakra-ui/react'
 import axios from 'axios'
-import React,{ useRef, useState} from 'react'
+import React,{ useContext, useRef, useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../../Context/AuthContext'
 import { PasswordField } from '../PasswordField'
  
 export const Register = () =>{
 const navigate=useNavigate()
 const [status,setStatus]=useState('')
 const [response,setResponse]=useState('')
+const {isFetching}=useContext(AuthContext)
+
+
 const handleChange=()=>{
   console.log ({Username:username.current.value.length})
  
@@ -18,8 +22,11 @@ const password=useRef()
 const handleSubmit=async(e)=>{
   e.preventDefault()
 try{
+  
   const res=await axios.post('https://controladorgastosapi.herokuapp.com/users/register',{username:(username.current.value).toLowerCase(),email:(email.current.value).toLowerCase(),password:password.current.value})
-setStatus(res.status)
+  console.log(isFetching)
+
+  setStatus(res.status)
 setResponse(res.data)
 res.status===201?setTimeout(() => {
   navigate('/login', {replace: true});
@@ -109,6 +116,7 @@ res.status===201?setTimeout(() => {
             <Stack spacing="6">
               <Button type={'submit'} fontWeight='bold' variant="primary" _hover={{background:'##F8FB', color:'black',border:'solid 0.2px black'}}>Registrarme</Button>
                
+
             </Stack>
           </Stack>
           </form>
@@ -130,7 +138,7 @@ res.status===201?setTimeout(() => {
       <AlertDescription maxWidth='sm'>
         Su usuario ha sido registrado exitosamente.
       </AlertDescription>
-    </Alert>:status==401?
+    </Alert>:status===401?
      <Flex  marginTop='-16rem'
         justifyContent='center'
           maxW="sm"

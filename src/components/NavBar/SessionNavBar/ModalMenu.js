@@ -1,19 +1,26 @@
 import React,{ useRef } from "react"
-import { Button, Drawer,IconButton, DrawerCloseButton, DrawerContent, DrawerOverlay,DrawerFooter,DrawerHeader,DrawerBody, useDisclosure, Flex, ButtonGroup,Text} from "@chakra-ui/react"
+import { Button, Drawer,IconButton, DrawerCloseButton, DrawerContent, DrawerOverlay,DrawerFooter,DrawerHeader,DrawerBody, useDisclosure, Flex, ButtonGroup,Text, useColorMode} from "@chakra-ui/react"
 import { FiMenu } from "react-icons/fi"
-import { ExpensesContactButon } from "./ExpensesContactButon"
 import { Link } from "react-router-dom"
 // import { AuthContext } from "../../../Context/AuthContext"
 import { UserProfile } from "../../../UserProfile/UserProfile"
+import { SunIcon,MoonIcon } from '@chakra-ui/icons'
+
+import { FriendsContactButton } from "./FriendsContactButton"
+import { ExpensesContactButon } from "./ExpensesContactButon"
 
 export const ModalMenu=({props})=> {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = useRef()
-    // const {user}=useContext(AuthContext)
-    const expenses=[{name:'Crear Gasto',index:0,route:'/gastos/crear'},{name:'Ver gastos',index:1,route:'/gastos/ver'},{name:'Agregar amigos',index:2,route:'/gastos/agregarAmigos'}]
+    const { colorMode, toggleColorMode } = useColorMode()
+
+        const expenses=[{name:'Crear Gasto',index:0,route:'/gastos/crear'},{name:'Ver gastos',index:1,route:'/gastos/ver'}]
+
+        const friends=[{name:'Ver Amigxs',index:1,route:'/amigos/ver'},{name:'Agregxr amigos',index:2,route:'/amigos/agregar'}]
 
     return (
       <>
+  <IconButton background={'transparent'} onClick={toggleColorMode} icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}></IconButton>
 
        <IconButton
                       variant="ghost"
@@ -45,9 +52,15 @@ export const ModalMenu=({props})=> {
                           </Link>
                       </ButtonGroup>
 
-                        <ButtonGroup spacing="8" >
+
+                      <ButtonGroup spacing="8" >
                       <ExpensesContactButon  expenses={expenses}key={expenses.index}/>
                       </ButtonGroup>
+
+                        <ButtonGroup spacing="8" >
+                      <FriendsContactButton  friends={friends}key={friends.index}/>
+                      </ButtonGroup>
+
                   <ButtonGroup marginBottom={'-9rem'} >
                     <UserProfile />
                   </ButtonGroup>

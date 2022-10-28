@@ -9,7 +9,7 @@ import { ExpensesList } from './components/ItemList/ExpensesList';
 import { CreateExpense } from './components/CreateExpense/CreateExpense';
 import { Home } from './components/Home/Home';
 import { UserProfile } from './UserProfile/UserProfile';
-
+import { AddFriends } from './components/AddFriends/AddFriends';
 function App() {
 const {user}=useContext(AuthContext)
   return (
@@ -26,6 +26,7 @@ const {user}=useContext(AuthContext)
   <Route path='/register' element={<Register/>}></Route>
     
     <Route path='/gastos/crear' element={<CreateExpense/>}></Route>
+    <Route path='/amigos/agregar' element={<AddFriends/>}></Route>
     <Route path='/gastos/ver' element={<ExpensesList/>}></Route>
     <Route path='/profile' element={<UserProfile/>}></Route>
     <Route path="*" element={<Navigate to="/" replace />}></Route>

@@ -18,7 +18,7 @@ import {
     
   } from '@chakra-ui/react'
   import  React,{useContext, useRef} from 'react'
-  import { Link, useNavigate } from 'react-router-dom'
+  import { Link } from 'react-router-dom'
   import { loginProcess } from '../../../Context/ApiCall'
 import { AuthContext } from '../../../Context/AuthContext'
   import { PasswordField } from '../PasswordField'
@@ -27,10 +27,10 @@ import { AuthContext } from '../../../Context/AuthContext'
     const {user,error}=useContext(AuthContext)
     const {dispatch}=useContext(AuthContext)
     const username=useRef()
-    const navigate=useNavigate()
     const password=useRef()
-    
-    
+  
+
+
     const handleClick=(e)=>{
       e.preventDefault()
 
@@ -74,35 +74,35 @@ import { AuthContext } from '../../../Context/AuthContext'
             </HStack>
           </Stack>
         </Stack>
-        <Box
-          py={{
-            base: '0',
-            sm: '8',
-          }}
-          px={{
-            base: '4',
-            sm: '10',
-          }}
-          bg={useBreakpointValue({
-            base: 'transparent',
-            sm: 'bg-surface',
-          })}
-          boxShadow={'dark-lg'}
-          borderRadius={{
-            base: 'none',
-            sm: 'xl',
-          }}
-    
-        >
-          <form onSubmit={handleClick}>
-     
-          <Stack spacing="6">
-            <Stack spacing="5">
+          <Box
+            py={{
+              base: '0',
+              sm: '8',
+            }}
+            px={{
+              base: '4',
+              sm: '10',
+            }}
+            bg={useBreakpointValue({
+              base: 'transparent',
+              sm: 'bg-surface',
+            })}
+            boxShadow={'dark-lg'}
+            borderRadius={{
+              base: 'none',
+              sm: 'xl',
+            }}
+      
+          >
+            <form onSubmit={handleClick}>
+      
+            <Stack spacing="6">
+              <Stack spacing="5">
 
-              <FormControl >
-                <FormLabel htmlFor="username">Usuario</FormLabel>
-                <Input id="username" required='required' type="username" ref={username}  name='username' />
-                </FormControl>
+                <FormControl >
+                  <FormLabel htmlFor="username">Usuario</FormLabel>
+                  <Input id="username" required='required' type="username" ref={username}  name='username' />
+                  </FormControl>
               <PasswordField ref={password} />
             <CheckboxGroup ><Checkbox fontSize={'small'} color='gray.600' >Recordarme</Checkbox></CheckboxGroup>
             </Stack>
