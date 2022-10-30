@@ -4,7 +4,7 @@ import axios from 'axios'
 import { AuthContext } from '../../Context/AuthContext'
 
 
-export const Expense= ({title,type,amount,category,_id })=> {
+export const Expense= ({title,type,amount,category,_id,props})=> {
 const {user}=useContext(AuthContext)  
 const [expenses,setExpenses]=useState([])
   const deleteItem= ()=>{   
@@ -15,6 +15,7 @@ console.log(expenses)
     }})
     .then((res)=>{setExpenses(res.data)})
     .catch((err)=>{console.log(err)})
+    props.getItems()
    }  
 
 

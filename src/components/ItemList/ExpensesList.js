@@ -1,7 +1,6 @@
 import { Flex,TableContainer,Table,Thead,Th,Tr} from '@chakra-ui/react'
-import { parse } from '@fortawesome/fontawesome-svg-core'
 import axios from 'axios'
-import React,{useState,useEffect, useContext} from 'react'
+import React,{useState, useContext} from 'react'
 import { AuthContext } from '../../Context/AuthContext'
 import { Expense } from './Expense'
 import {Dashboard} from '../Dashboard/Dashboard.js'
@@ -23,10 +22,7 @@ export const ExpensesList = () => {
       console.log(err)
     }
   }
-useEffect(()=>{
-  getItems()
-},[])
-
+getItems()
 
 
   return (
@@ -55,7 +51,7 @@ useEffect(()=>{
     
     </Tr>
     </Thead>
-      {expenses.map((expense)=><Expense props={{expenses,setExpenses}} {...expense} key={expense._id} />)}
+      {expenses.map((expense)=><Expense props={{expense,setExpenses,getItems}}  {...expense} key={expense._id} />)}
         
     </Table>
     </TableContainer>
