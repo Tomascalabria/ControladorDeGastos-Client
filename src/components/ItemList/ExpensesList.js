@@ -1,11 +1,12 @@
 import { Flex,TableContainer,Table,Thead,Th,Tr} from '@chakra-ui/react'
 import axios from 'axios'
-import React,{useState, useContext} from 'react'
+import React,{useState, useContext, useEffect} from 'react'
 import { AuthContext } from '../../Context/AuthContext'
 import { Expense } from './Expense'
 import {Dashboard} from '../Dashboard/Dashboard.js'
+import { ExpensesContext } from '../../Context/ExpensesContext/ExpensesContext'
 export const ExpensesList = () => {
-    const [expenses,setExpenses]=useState([])
+    const {expenses,setExpenses}=useContext(ExpensesContext)
     const {user}=useContext(AuthContext)
 
     
@@ -17,12 +18,16 @@ export const ExpensesList = () => {
       }})
       const result=data.data
       setExpenses(result)
+      console.log(expenses)
       }
     catch(err){
       console.log(err)
     }
   }
-getItems()
+  useEffect(()=>{
+    
+    getItems()
+  },[])
 
 
   return (
@@ -58,7 +63,7 @@ getItems()
 
 
     </Flex>
-    <Dashboard props={[expenses]}/>
+    <Dashboard props={[expenses]} />
 </>
 
     )

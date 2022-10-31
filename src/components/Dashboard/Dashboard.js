@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Chart} from 'react-google-charts'
 
 
@@ -8,16 +8,20 @@ export const Dashboard = ({props}) => {
 
 const configs={
 is3d:true,
-title:'Expenses Chart'
+title:'Cuadro de gastos!'
 }
 
-
 const rows=([])
-props.map((x)=>{
-  x.forEach((y)=>{
-   rows.push([[y.category],[y.amount]])
+
+  props.map((x)=>{
+    rows.push(['Category','Amount'])
+    x.forEach((y)=>{
+      
+      rows.push([y.category,y.amount])
+    })
+    console.log(rows)
   })
-  })
+
     return (
       <>
       <Chart 

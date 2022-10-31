@@ -7,11 +7,14 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthContextProvider } from './Context/AuthContext';
 import theme from './ThemeConfig/theme'
+import { ExpensesContextProvider } from './Context/ExpensesContext/ExpensesContext.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
  
     <AuthContextProvider>
+    <ExpensesContextProvider>
+        
     <BrowserRouter>
     <ChakraProvider>
     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
@@ -19,6 +22,7 @@ root.render(
     <App />
     </ChakraProvider>
     </BrowserRouter>
+    </ExpensesContextProvider>
     </AuthContextProvider>
 
 );

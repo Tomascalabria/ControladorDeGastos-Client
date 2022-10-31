@@ -13,7 +13,7 @@ const [status,setStatus]=useState(false)
 const submitGasto=(e)=>{
   e.preventDefault()
   console.log({title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:categoria.current.value,creator:user.userInfo.username})
-axios.post('https://controladorgastosapi.herokuapp.com/expenses/create/',{title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:categoria.current.value,creator:user.userInfo.username})
+axios.post('https://controladorgastosapi.herokuapp.com/expenses/create/',{title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:(categoria.current.value.charAt(0).toUpperCase()+categoria.current.value.slice(1).toLowerCase()),creator:user.userInfo.username})
 .then((res)=>{if(res.status===201){console.log(`Data sent! ${res.data}`,setStatus(res.status))}}
 )
 
@@ -74,18 +74,18 @@ axios.post('https://controladorgastosapi.herokuapp.com/expenses/create/',{title:
             <Stack spacing="5">
               <FormControl>
                 <FormLabel htmlFor="text">Titulo</FormLabel>
-                <Input id="title" type="title" name='title' ref={title} />
+                <Input id="title" type="text" name='title' ref={title} />
               </FormControl >
            
               <FormControl>
                 <FormLabel htmlFor="text">Categoria</FormLabel>
-                <Input id="category" type="category" name='category' ref={categoria} />
+                <Input id="category" type="text" name='category' ref={categoria} />
               </FormControl >
            
               <FormControl>
                 <Select ref={tipo} placeholder='Tipo de gasto' required='True'>
                   <option  type='ingreso' id='ingreso' name='ingreso'>Ingreso</option>
-                  <option type='egreso'id='egreso' name='egreso'>Egreso</option>
+                  <option type='text'id='egreso' name='egreso'>Egreso</option>
                 </Select>
               </FormControl >
             
