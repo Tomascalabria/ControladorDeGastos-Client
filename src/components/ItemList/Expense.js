@@ -14,8 +14,9 @@ console.log(expenses)
       admin:user.userInfo.isAdmin
     }})
     .then((res)=>{setExpenses(res.data)})
+    .then((x)=>{  props.getItems()})
     .catch((err)=>{console.log(err)})
-    props.getItems()
+  
    }  
 
 

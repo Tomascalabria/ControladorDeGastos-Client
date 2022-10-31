@@ -12,14 +12,14 @@ export const ExpensesList = () => {
 
     
   const getItems=async ()=>{
-    try{
+      try{
   // Right now we are receiving all the expenses and filtering by the username but we should only receive the one from the username --> that will be modified
       const data =await axios.get('https://controladorgastosapi.herokuapp.com/expenses/',{headers:{
         username:user.userInfo.username
       }})
       const result=data.data
       setExpenses(result)
-      console.log(expenses)
+      
       }
     catch(err){
       console.log(err)
@@ -35,8 +35,8 @@ export const ExpensesList = () => {
     <>
 <Container w={'max-content'} height='100%'>
 <Tabs w={'max-content'} alignContent='center' justifyContent={'center'} alignItems='center' display={'flex'} flexDir='column'>
-  <TabList w={'100%'} justifyContent='center'>
-    <Tab>Table</Tab>
+  <TabList  w={'100%'} justifyContent='center'>
+    <Tab >Table</Tab>
     <Tab>Dashboard</Tab>
     <Tab></Tab>
     </TabList>
