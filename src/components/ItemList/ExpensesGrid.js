@@ -15,7 +15,6 @@ export const ExpensesGrid = (props) => {
     <Flex
     height={'xl'}
       columns={columns}
-      
       columnGap={{
       
         base: '12',

@@ -1,4 +1,4 @@
-import { Flex,TableContainer,Table,Thead,Th,Tr} from '@chakra-ui/react'
+import { Flex,TableContainer,Table,Thead,Th,Tr, useColorModeValue, color} from '@chakra-ui/react'
 import axios from 'axios'
 import React,{useState, useContext, useEffect} from 'react'
 import { AuthContext } from '../../Context/AuthContext'
@@ -35,7 +35,8 @@ export const ExpensesList = () => {
 
 
 
-  <Flex
+  <Flex background={useColorModeValue('transparent','gray.800')}
+
   flexWrap={'wrap'}
   flexDirection={'row'}
   alignContent='space-around'
@@ -45,13 +46,13 @@ export const ExpensesList = () => {
  
   >
     <TableContainer >  
-    <Table size='lg' variant={'simple'} colorScheme='teal'>
+    <Table size='lg' variant={'simple'} background={useColorModeValue('transparent','gray.800')}  > 
     <Thead>
-    <Tr>
-    <Th>Titulo</Th>
-    <Th>Monto</Th>
-    <Th>Categoria</Th>
-    <Th>Tipo</Th>
+    <Tr >
+    <Th color={useColorModeValue('blackAlpha.800','blue.400')}>Titulo</Th>
+    <Th color={useColorModeValue('blackAlpha.800','blue.400')}>Monto</Th>
+    <Th color={useColorModeValue('blackAlpha.800','blue.400')}>Categoria</Th>
+    <Th color={useColorModeValue('blackAlpha.800','blue.400')}>Tipo</Th>
     
     
     </Tr>

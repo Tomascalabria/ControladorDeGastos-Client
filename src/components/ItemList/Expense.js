@@ -22,8 +22,8 @@ console.log(expenses)
  return( 
   <>
 
- <Tbody>
- <Tr color={'blackAlpha.800'}>
+ <Tbody >
+ <Tr color={useColorModeValue('blackAlpha.900','whiteAlpha.900')}>
    <Td>{title}</Td>
    <Td>${amount}</Td>
    <Td>{category}</Td>

@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import { background, useColorModeValue } from "@chakra-ui/react";
+import React from "react";
 import {Chart} from 'react-google-charts'
 
 
@@ -8,7 +9,9 @@ export const Dashboard = ({props}) => {
 
 const configs={
 is3d:true,
-title:'Cuadro de gastos!'
+title:'Cuadro de gastos!',
+background:'red'
+
 }
 
 const rows=([])
@@ -35,8 +38,10 @@ const rows=([])
       ]}
         chartType="PieChart"
         data={rows}
-        width="100%"
-        height="450px"
+        style={{background:'transparent'}}
+
+        width="50%"
+        height="350px"
         options={configs}
         legendToggle
       >
