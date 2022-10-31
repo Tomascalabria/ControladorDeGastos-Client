@@ -1,6 +1,6 @@
-import { Flex,TableContainer,Table,Thead,Th,Tr, useColorModeValue, color} from '@chakra-ui/react'
+import { Flex,TableContainer,Table,Thead,Th,Tr, useColorModeValue} from '@chakra-ui/react'
 import axios from 'axios'
-import React,{useState, useContext, useEffect} from 'react'
+import React,{useContext, useEffect} from 'react'
 import { AuthContext } from '../../Context/AuthContext'
 import { Expense } from './Expense'
 import {Dashboard} from '../Dashboard/Dashboard.js'

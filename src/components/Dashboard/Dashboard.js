@@ -1,4 +1,3 @@
-import { background, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import {Chart} from 'react-google-charts'
 
@@ -10,7 +9,7 @@ export const Dashboard = ({props}) => {
 const configs={
 is3d:true,
 title:'Cuadro de gastos!',
-background:'red'
+
 
 }
 
