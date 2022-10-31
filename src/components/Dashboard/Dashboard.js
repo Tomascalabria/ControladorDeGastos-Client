@@ -1,3 +1,4 @@
+import { Container } from "@chakra-ui/react";
 import React from "react";
 import {Chart} from 'react-google-charts'
 
@@ -26,7 +27,9 @@ const rows=([])
 
     return (
       <>
+ 
       <Chart 
+    
       columns={[
         {type:'string',
         label:'categories'},
@@ -39,13 +42,14 @@ const rows=([])
         data={rows}
         style={{background:'transparent'}}
 
-        width="50%"
-        height="350px"
+        width='max-content'
+        height="450px"
         options={configs}
         legendToggle
       >
 
       </Chart>
+   
 
 
   </>

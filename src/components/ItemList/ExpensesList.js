@@ -1,4 +1,5 @@
-import { Flex,TableContainer,Table,Thead,Th,Tr, useColorModeValue} from '@chakra-ui/react'
+import { Flex,TableContainer,Table,Thead,Th,Tr, useColorModeValue, Container} from '@chakra-ui/react'
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import axios from 'axios'
 import React,{useContext, useEffect} from 'react'
 import { AuthContext } from '../../Context/AuthContext'
@@ -32,9 +33,16 @@ export const ExpensesList = () => {
 
   return (
     <>
+<Container w={'max-content'} height='100%'>
+<Tabs w={'max-content'} alignContent='center' justifyContent={'center'} alignItems='center' display={'flex'} flexDir='column'>
+  <TabList w={'100%'} justifyContent='center'>
+    <Tab>Table</Tab>
+    <Tab>Dashboard</Tab>
+    <Tab></Tab>
+    </TabList>
 
-
-
+    <TabPanels>
+    <TabPanel>
   <Flex background={useColorModeValue('transparent','gray.800')}
 
   flexWrap={'wrap'}
@@ -61,10 +69,14 @@ export const ExpensesList = () => {
         
     </Table>
     </TableContainer>
+</Flex></TabPanel>
+    <TabPanel w={'100%'} height='60%' alignContent='center' justifyContent={'center'} alignItems='center'>    <Dashboard props={[expenses]} /></TabPanel>
 
+    </TabPanels>
 
-    </Flex>
-    <Dashboard props={[expenses]} />
+</Tabs>
+
+</Container>
 </>
 
     )

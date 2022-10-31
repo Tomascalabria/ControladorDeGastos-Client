@@ -13,6 +13,7 @@ export const ItemGrid = (props) => {
   }, [props.children])
   return (
     <SimpleGrid
+    w={'100%'}
       columns={columns}
       columnGap={{
         base: '4',
