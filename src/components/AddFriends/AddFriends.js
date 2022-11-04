@@ -6,17 +6,23 @@ import { AuthContext } from '../../Context/AuthContext'
 export const AddFriends = () => {
 const friend=useRef()
 const {user}=useContext(AuthContext)
-
+const url='https://controladorgastosapi.herokuapp.com/friends/add'
 const handleClick=async (e)=>{
     e.preventDefault()
-  const newFriend= await axios.post(`http://localhost:5050/friends/${user.userInfo._id}/add`,{friend:friend.current.value},{headers:{
-        token:user.token
+  const newFriend= await axios.post(`${url}`,{
+    friend:friend.current.value.toLowerCase(),
+    id:user.userInfo._id
+    },{headers:{
+        token:user.token,
+        username:user.userInfo.username    
       }
     })
+.then((res)=>{console.log(res.data)})
+.catch((err)=>{console.log( err.response.data.message)})
 
-console.log(newFriend.data)
-console.log(newFriend.status)
   }
+  
+
     return (
         <Box 
         w={'100%'} 
