@@ -13,12 +13,12 @@ const {user}=useContext(AuthContext)
 // const url_friends_add='https://controladorgastosapi.herokuapp.com/friends/add'
 const url_friends_get='https://controladorgastosapi.herokuapp.com/friends/${user.userInfo._id}/search'
 // const url2='http://localhost:5050/friends/add'
-const url22=`http://localhost:5050/friends/${user.userInfo._id}/search`
+// const url22=`http://localhost:5050/friends/${user.userInfo._id}/search`
 
 
 const hadndleSubmit=async(e)=>{
   e.preventDefault()
-  const request=await axios.post(url22,{search:friend.current.value.toLowerCase(),
+  const request=await axios.post(url_friends_get,{search:friend.current.value.toLowerCase(),
   },{headers:{
     token:user.token,
 
