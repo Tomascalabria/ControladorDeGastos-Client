@@ -11,7 +11,7 @@ const [hoveredItem,setHoveredItem]=useState(false)
 const friend=useRef()
 const {user}=useContext(AuthContext)
 // const url_friends_add='https://controladorgastosapi.herokuapp.com/friends/add'
-const url_friends_get='https://controladorgastosapi.herokuapp.com/friends/${user.userInfo._id}/search'
+const url_friends_get='https://controladorgastosapi.herokuapp.com/friends/:${user.userInfo._id}/search'
 // const url2='http://localhost:5050/friends/add'
 // const url22=`http://localhost:5050/friends/${user.userInfo._id}/search`
 
