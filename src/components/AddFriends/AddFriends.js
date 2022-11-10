@@ -7,19 +7,26 @@ import { AuthContext } from '../../Context/AuthContext'
 export const AddFriends = () => {
 const [friends,setFriends]=useState([])
 const [response,setResponse]=useState([])
-// const [hoveredItem,setHoveredItem]=useState(false)
+const [addedFriend,setAddedFriend]=useState([])
 const friend=useRef()
 const {user}=useContext(AuthContext)
-console.log(user.userInfo)
+
 const url_friends_add='https://controladorgastosapi.herokuapp.com/friends/add'
 const url_friends_get=`https://controladorgastosapi.herokuapp.com/friends/${user.userInfo._id}/search`
-// const local_url_friends_add='http://localhost:5050/friends/add'
-// const local_url_friends_get=`http://localhost:5050/friends/${user.userInfo._id}/search`
+const local_url_friends_add='http://localhost:5050/friends/add'
+const local_url_friends_get=`http://localhost:5050/friends/${user.userInfo._id}/search`
 
 
-const hadndleSubmit=async(e)=>{
+/**
+* Submits an API call with the search values. Once the response is returned 2 states are setted. One with the actual response and another one with the friends that the user has already added.
+*
+ 
+ * @returns searched value || '   '.
+ */
+
+const handleSubmit=async(e)=>{
   e.preventDefault()
-  const request=await axios.post(`${url_friends_get}`,
+  const request=await axios.post(`${local_url_friends_get}`,
   {search:friend.current.value.toLowerCase(),
   },{headers:{
     token:user.token,
@@ -28,11 +35,22 @@ const hadndleSubmit=async(e)=>{
   .then((response)=>{
 
     setFriends(response.data.data)
+    setAddedFriend(user.userInfo.friends)
+    console.log(addedFriend)
+    console.log(friends)
   })
 }
+
+/**
+* Submits an API call with the friend you have previously searched for and you wish to add. Once the response is returned we set a state with the response and we clear it after 3 seconds. 
+*
+* @param id   Type: Number -  id of the user you are adding. It takes the value from the button _key.
+* @returns searched value || '   '.
+*/
+
 const handleClick=async (id,e)=>{
     e.preventDefault()
-  const newFriend= await axios.post(`${url_friends_add}`,{
+  const newFriend= await axios.post(`${local_url_friends_add}`,{
     friend:id,
     id:user.userInfo._id
     },{headers:{
@@ -54,7 +72,7 @@ setTimeout(()=>{
 
 
     return (
-      <Flex  flexWrap={'wrap'} flexDir='row' h='100%' justifyContent={'space-evenly'} alignContent='center'>
+      <Flex  flexWrap={'wrap'} flexDir='row' w={'90%'} h='100%' justifyContent={'space-evenly'} alignContent='center'>
         <Box 
         w={'42%'} 
         display='flex'
@@ -66,12 +84,12 @@ setTimeout(()=>{
     
 
 
-    <Stack w={'100%'}>
+    <Stack w={'80%'}>
         <form style={{height:'45%',display:'flex',flexDirection:'column'  ,justifyContent:'center'}}>
         
         <FormControl display={'flex'}  flexDirection='row' alignContent='space-around'  justifyContent={'space-around'} alignItems={'flex-start'}   >
       
-          <Input id="friends" required={true} borderRadius='25px' type="text" w={'100%'} title='Ingrese el usuario de su amigx' placeholder='Ingrese el usuario de su amigx' onChange={hadndleSubmit}  _focus={{ background:useColorModeValue('#B0D1C4','#4a4e69'  ),fontWeight:'semibold'}} ref={friend}  name='friends' />
+          <Input id="friends" required={true} borderRadius='25px' type="text" w={'100%'} title='Ingrese el usuario de su amigx' placeholder='Ingrese el usuario de su amigx' onChange={handleSubmit()}  _focus={{ background:useColorModeValue('#B0D1C4','#4a4e69'  ),fontWeight:'semibold'}} ref={friend}  name='friends' />
           <IconButton aria-label='Search database'background={'transparent'} type='submit'  _hover={{background:'transparent'}} icon={<SearchIcon color={useColorModeValue('darkblue','coral')}  marginLeft='5px'/>} />
           </FormControl>
           
@@ -80,32 +98,27 @@ setTimeout(()=>{
           </form>
           </Stack>
         </Box>
-        <Box w={'100%'}  maxW='950px' h='md'  marginTop={'2rem'}>
-  <Table w={'80%'}    variant={'simple'} background={useColorModeValue('transparent','gray.800')}>
+        <Box w={'100%'} justifyContent='flex-start 'alignItems={'center'} alignContent='center' display={'flex'} flexDir='column'   maxW='950px' h='md'  marginTop={'2rem'}>
+  <Table  display='table'  justifyContent={'center'} textAlign='center' variant={'simple'} background={useColorModeValue('transparent','gray.800')}>
 
-    <Thead  w={'80%'}  color={useColorModeValue('blackAlpha.800','blue.400')}>
-    <Tr my=".6rem" pl="0px" color="gray.400">
-      <Th></Th>
-      <Th></Th>
+    <Thead   color={useColorModeValue('blackAlpha.800','blue.400')}>
+    <Tr color="gray.400">
+   
       <Th color={useColorModeValue("blackAlpha.800",'white')}>Username</Th>
       <Th color={useColorModeValue("blackAlpha.800",'white')}>Email</Th>
-      <Th color={useColorModeValue("blackAlpha.800",'white')}></Th>
       
     </Tr>
   </Thead>
-  <Tbody>
-    {
+  <Tbody w={'xl'}> 
+    {    
  friends.map((row) => {
-  console.log(row)
   
   return (
     <>
 <Tr >
-  <Td></Td>
-  <Td></Td>
-  <Td>{row.username}</Td>
+  <Td >{row.username}</Td>
   <Td>{row.email}</Td>
-  <Td w={'50%'}><AddIcon key={row._id} onClick={(e)=>handleClick(row._id,e)}/>{response.status!=='Success'?<Text marginTop={'0.5rem'} color={'red.500'}>{response.message}</Text>:<ButtonGroup><CheckIcon color={'green.600'}/><Text color={'green.500'}>{response.message}</Text></ButtonGroup> }</Td>
+  <Td cursor={'pointer'} >  <AddIcon  key={row._id} onClick={(e)=>handleClick(row._id,e)}/>{response.status!=='Success'?<Text marginTop={'0.5rem'} color={'red.500'}>{response.message}</Text>:<ButtonGroup><CheckIcon color={'green.600'}/><Text color={'green.500'}>{response.message}</Text></ButtonGroup> }</Td>
   </Tr>      
  
 </>
