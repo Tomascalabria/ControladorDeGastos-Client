@@ -1,19 +1,20 @@
-import { Box, Stack,FormControl,Input,useBreakpointValue, Button, Flex, TableContainer, Table, TableCaption, Thead, Tbody,Tr,Td, Th, IconButton, useColorModeValue, Img} from '@chakra-ui/react'
-import {AddIcon, SearchIcon} from '@chakra-ui/icons'
+import { Box, Stack,FormControl,Input, Flex, Table, Thead, Tbody,Tr,Td, Th, IconButton, useColorModeValue,Text, ButtonGroup} from '@chakra-ui/react'
+import {AddIcon, CheckIcon, SearchIcon} from '@chakra-ui/icons'
 import axios from 'axios'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { AuthContext } from '../../Context/AuthContext'
-import { TablesTableRow } from './TablesTableRow'
 
 export const AddFriends = () => {
 const [friends,setFriends]=useState([])
-const [hoveredItem,setHoveredItem]=useState(false)
+const [response,setResponse]=useState([])
+// const [hoveredItem,setHoveredItem]=useState(false)
 const friend=useRef()
 const {user}=useContext(AuthContext)
-// const url_friends_add='https://controladorgastosapi.herokuapp.com/friends/add'
+console.log(user.userInfo)
+const url_friends_add='https://controladorgastosapi.herokuapp.com/friends/add'
 const url_friends_get='https://controladorgastosapi.herokuapp.com/friends/${user.userInfo._id}/search'
-// const url2='http://localhost:5050/friends/add'
-// const url22=`http://localhost:5050/friends/${user.userInfo._id}/search`
+// const local_url_friends_add='http://localhost:5050/friends/add'
+// const local_url_friends_get=`http://localhost:5050/friends/${user.userInfo._id}/search`
 
 
 const hadndleSubmit=async(e)=>{
@@ -27,21 +28,26 @@ const hadndleSubmit=async(e)=>{
 
     setFriends(response.data.data)
   })
-console.log(e.target.value)
-console.log(friends)
 }
-const handleClick=async (e)=>{
+const handleClick=async (id,e)=>{
     e.preventDefault()
-//   const newFriend= await axios.post(`${url_friends_add}`,{
-//     friend:friend.current.value.toLowerCase(),
-//     id:user.userInfo._id
-//     },{headers:{
-//         token:user.token,
-//         username:user.userInfo.username    
-//       }
-//     })
-// .then((res)=>{console.log(res.data)})
-// .catch((err)=>{console.log( err.response.data.message)})
+  const newFriend= await axios.post(`${url_friends_add}`,{
+    friend:id,
+    id:user.userInfo._id
+    },{headers:{
+        token:user.token,
+        username:user.userInfo.username    
+        
+      }
+
+    })
+.then((res)=>{setResponse(res.data)})
+
+.catch((err)=>{setResponse( err.response.data)})
+
+setTimeout(()=>{
+  setResponse([])
+  },3000)
 
   }
 
@@ -98,8 +104,9 @@ const handleClick=async (e)=>{
   <Td></Td>
   <Td>{row.username}</Td>
   <Td>{row.email}</Td>
-  <Td w={'50%'}><AddIcon/></Td>
+  <Td w={'50%'}><AddIcon key={row._id} onClick={(e)=>handleClick(row._id,e)}/>{response.status!=='Success'?<Text marginTop={'0.5rem'} color={'red.500'}>{response.message}</Text>:<ButtonGroup><CheckIcon color={'green.600'}/><Text color={'green.500'}>{response.message}</Text></ButtonGroup> }</Td>
   </Tr>      
+ 
 </>
   
   )
