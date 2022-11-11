@@ -89,7 +89,7 @@ setTimeout(()=>{
         
         <FormControl display={'flex'}  flexDirection='row' alignContent='space-around'  justifyContent={'space-around'} alignItems={'flex-start'}   >
       
-          <Input id="friends" required={true} borderRadius='25px' type="text" w={'100%'} title='Ingrese el usuario de su amigx' placeholder='Ingrese el usuario de su amigx' onChange={handleSubmit()}  _focus={{ background:useColorModeValue('#B0D1C4','#4a4e69'  ),fontWeight:'semibold'}} ref={friend}  name='friends' />
+          <Input id="friends" required={true} borderRadius='25px' type="text" w={'100%'} title='Ingrese el usuario de su amigx' placeholder='Ingrese el usuario de su amigx' onChange={handleSubmit}  _focus={{ background:useColorModeValue('#B0D1C4','#4a4e69'  ),fontWeight:'semibold'}} ref={friend}  name='friends' />
           <IconButton aria-label='Search database'background={'transparent'} type='submit'  _hover={{background:'transparent'}} icon={<SearchIcon color={useColorModeValue('darkblue','coral')}  marginLeft='5px'/>} />
           </FormControl>
           
