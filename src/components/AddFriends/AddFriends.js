@@ -26,7 +26,7 @@ const local_url_friends_get=`http://localhost:5050/friends/${user.userInfo._id}/
 
 const handleSubmit=async(e)=>{
   e.preventDefault()
-  const request=await axios.post(`${local_url_friends_get}`,
+  const request=await axios.post(`${url_friends_get}`,
   {search:friend.current.value.toLowerCase(),
   },{headers:{
     token:user.token,
@@ -50,7 +50,7 @@ const handleSubmit=async(e)=>{
 
 const handleClick=async (id,e)=>{
     e.preventDefault()
-  const newFriend= await axios.post(`${local_url_friends_add}`,{
+  const newFriend= await axios.post(`${url_friends_add}`,{
     friend:id,
     id:user.userInfo._id
     },{headers:{
