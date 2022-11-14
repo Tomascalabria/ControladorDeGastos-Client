@@ -10,7 +10,7 @@ import {
 } from "@choc-ui/chakra-autocomplete";
 import { AuthContext } from "../../Context/AuthContext";
 
-export const SharedExpenses=()=> {
+export const SharedExpenses=({props})=> {
  
   const {user}=useContext(AuthContext)
 const friends=user.userInfo.friends
@@ -18,16 +18,20 @@ const friends=user.userInfo.friends
     <Flex  justify="center" align="center" w="full" direction="column">
     <FormControl id="email" w="60">
       <FormLabel >Que no se te hagan las ratas... <Text fontSize={'12px'}>Agrega tus amigxs</Text></FormLabel>
-      <AutoComplete openOnFocus multiple  onChange={(vals)  => console.log(vals)}>
+      
+      <AutoComplete openOnFocus multiple onChange={(vals)=>{{props.setFriendsToShare(vals)}}}>
         <AutoCompleteInput autoComplete="off" placeholder="Search..."  variant="filled">
           {({ tags }) =>
             tags.map((tag, tid) => (
+              
               <AutoCompleteTag
                 key={tid}
                 label={tag.label}
                 onRemove={tag.onRemove}
               />
-            ))
+              
+              ))
+
           }
         </AutoCompleteInput >
         <AutoCompleteList>
@@ -38,8 +42,10 @@ const friends=user.userInfo.friends
               textTransform="capitalize"
               _selected={{ bg: "whiteAlpha.50" }}
               _focus={{ bg: "whiteAlpha.100" }}
-            >
-              {friend.friend_username}
+              
+              
+         >
+          {friend.friend_username}
             </AutoCompleteItem>
           ))}
         </AutoCompleteList>

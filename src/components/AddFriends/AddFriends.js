@@ -9,7 +9,7 @@ const [friends,setFriends]=useState([])
 const [response,setResponse]=useState([])
 const [addedFriend,setAddedFriend]=useState([])
 const friend=useRef()
-const {user}=useContext(AuthContext)
+const {user,dispatch}=useContext(AuthContext)
 
 const url_friends_add='https://controladorgastosapi.herokuapp.com/friends/add'
 const url_friends_get=`https://controladorgastosapi.herokuapp.com/friends/${user.userInfo._id}/search`
@@ -35,10 +35,25 @@ const handleSubmit=async(e)=>{
   .then((response)=>{
 
     setFriends(response.data.data)
-    setAddedFriend(user.userInfo.friends)
+    
     console.log(addedFriend)
     console.log(friends)
   })
+
+}
+/**
+* Submits a request to the BackEnd and returns the refreshed state from our current user.
+*
+ 
+ * @returns User.
+ */
+
+const refreshUser = async () => {
+  try {
+    dispatch({ type: "UPDATE_USER" });
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 /**
@@ -58,9 +73,11 @@ const handleClick=async (id,e)=>{
         username:user.userInfo.username    
         
       }
-
     })
-.then((res)=>{setResponse(res.data)})
+    .then((res)=>{
+  refreshUser()
+  setResponse(res.data)
+      })
 
 .catch((err)=>{setResponse( err.response.data)})
 
