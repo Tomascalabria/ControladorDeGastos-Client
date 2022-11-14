@@ -1,4 +1,4 @@
-<bu
+
 
 **APP DE CONTROL DE GASTOS**
  - Este es un proyecto personal bastante basico para añadir y controlar gastos. En el cual un usuario se podrá loguear y revisar todos sus gastos, así como tambien editarlos, eliminarlos y/o compartir gastos con sus amigos.
