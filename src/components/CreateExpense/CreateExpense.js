@@ -17,7 +17,7 @@ const submitGasto=(e)=>{
 
   e.preventDefault()
   console.log({title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:categoria.current.value,creator:user.userInfo.username})
-axios.post('https://controladorgastosapi.herokuapp.com/expenses/create/',{title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:(categoria.current.value.charAt(0).toUpperCase()+categoria.current.value.slice(1).toLowerCase()),creator:user.userInfo.username,participants:friendsToShare})
+axios.post('https://controladorgastosapi.herokuapp.com/expenses/create',{title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:(categoria.current.value.charAt(0).toUpperCase()+categoria.current.value.slice(1).toLowerCase()),creator:user.userInfo.username,participants:friendsToShare})
 .then((res)=>{if(res.status===201){console.log(`Data sent! ${res.data}`,setStatus(res.status))}}
 )
 
