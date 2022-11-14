@@ -13,11 +13,13 @@ const [friendsToShare,setFriendsToShare]=useState([])
 const [status,setStatus]=useState(false)
 const [sharedExpense,setSharedExpense]=useState(false)
 
+// const local_url="http://localhost:5050/expenses/create"
+const prod_url='https://controladorgastosapi.herokuapp.com/expenses/create'
 const submitGasto=(e)=>{
 
   e.preventDefault()
   console.log({title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:categoria.current.value,creator:user.userInfo.username})
-axios.post('https://controladorgastosapi.herokuapp.com/expenses/create',{title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:(categoria.current.value.charAt(0).toUpperCase()+categoria.current.value.slice(1).toLowerCase()),creator:user.userInfo.username,participants:friendsToShare})
+axios.post(`${prod_url}`,{title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:(categoria.current.value.charAt(0).toUpperCase()+categoria.current.value.slice(1).toLowerCase()),creator:user.userInfo.username,participants:friendsToShare})
 .then((res)=>{if(res.status===201){console.log(`Data sent! ${res.data}`,setStatus(res.status))}}
 )
 
