@@ -11,10 +11,10 @@ const [addedFriend,setAddedFriend]=useState([])
 const friend=useRef()
 const {user}=useContext(AuthContext)
 
-// const url_friends_add='https://controladorgastosapi.herokuapp.com/friends/add'
-// const url_friends_get=`https://controladorgastosapi.herokuapp.com/friends/${user.userInfo._id}/search`
-const local_url_friends_add='http://localhost:5050/friends/add'
-const local_url_friends_get=`http://localhost:5050/friends/${user.userInfo._id}/search`
+const url_friends_add='https://controladorgastosapi.herokuapp.com/friends/add'
+const url_friends_get=`https://controladorgastosapi.herokuapp.com/friends/${user.userInfo._id}/search`
+// const local_url_friends_add='http://localhost:5050/friends/add'
+// const local_url_friends_get=`http://localhost:5050/friends/${user.userInfo._id}/search`
 
 
 /**
