@@ -1,5 +1,5 @@
 import React,{useContext} from "react";
-import { Flex, FormControl, FormHelperText, FormLabel, Text } from "@chakra-ui/react";
+import { Flex, FormControl, FormHelperText, FormLabel, Text, useColorModeValue } from "@chakra-ui/react";
 import {Link} from 'react-router-dom'
 import {
   AutoComplete,
@@ -44,7 +44,7 @@ const friends=user.userInfo.friends
           ))}
         </AutoCompleteList>
       </AutoComplete>
-      <FormHelperText>No encontras a alguien?<Link to={'/amigos/agregar'}><Text color={'lightblue'} > Agregalo a tus amigos!</Text></Link></FormHelperText>
+      <FormHelperText>No encontras a alguien?<Link to={'/amigos/agregar'}><Text color={useColorModeValue('blue','lightblue')} >Agregalo a tus amigos!</Text></Link></FormHelperText>
     </FormControl>
   </Flex>
   );
