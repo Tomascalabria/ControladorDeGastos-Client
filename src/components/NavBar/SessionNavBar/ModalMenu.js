@@ -2,7 +2,6 @@ import React,{ useRef } from "react"
 import { Button, Drawer,IconButton, DrawerCloseButton, DrawerContent, DrawerOverlay,DrawerFooter,DrawerHeader,DrawerBody, useDisclosure, Flex, ButtonGroup,Text, useColorMode} from "@chakra-ui/react"
 import { FiMenu } from "react-icons/fi"
 import { Link } from "react-router-dom"
-// import { AuthContext } from "../../../Context/AuthContext"
 import { UserProfile } from "../../../UserProfile/UserProfile"
 import { SunIcon,MoonIcon } from '@chakra-ui/icons'
 

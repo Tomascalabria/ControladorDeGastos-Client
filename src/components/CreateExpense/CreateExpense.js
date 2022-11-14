@@ -1,7 +1,8 @@
 import React, { useContext, useRef, useState } from 'react'
 import axios from 'axios'
-import {Box,Button,Container,FormControl,FormLabel,Heading,Select,Input,Stack,useBreakpointValue,Alert,AlertIcon,AlertTitle,AlertDescription} from '@chakra-ui/react'
+import {Box,Button,Container,FormControl,FormLabel,Heading,Select,Input,Stack,useBreakpointValue,Alert,AlertIcon,AlertTitle,AlertDescription, Checkbox} from '@chakra-ui/react'
 import { AuthContext } from '../../Context/AuthContext'
+import { SharedExpenses } from './SharedExpenses'
 export const CreateExpense = () => {
 const {user}=useContext(AuthContext)
 const title=useRef()
@@ -9,8 +10,10 @@ const tipo=useRef()
 const monto=useRef()
 const categoria=useRef()
 const [status,setStatus]=useState(false)
+const [sharedExpense,setSharedExpense]=useState(false)
 
 const submitGasto=(e)=>{
+
   e.preventDefault()
   console.log({title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:categoria.current.value,creator:user.userInfo.username})
 axios.post('https://controladorgastosapi.herokuapp.com/expenses/create/',{title:title.current.value,amount:monto.current.value,type:tipo.current.value,category:(categoria.current.value.charAt(0).toUpperCase()+categoria.current.value.slice(1).toLowerCase()),creator:user.userInfo.username})
@@ -21,6 +24,7 @@ axios.post('https://controladorgastosapi.herokuapp.com/expenses/create/',{title:
   console.log(err)
 })
 }
+
 
   return (
     <Container
@@ -93,9 +97,12 @@ axios.post('https://controladorgastosapi.herokuapp.com/expenses/create/',{title:
                 <FormLabel htmlFor="number">Monto</FormLabel>
                 <Input id="monto" type="number" name='monto' ref={monto} />
               </FormControl >
-
+              <FormControl>
               
-             
+            <Checkbox onChange={()=>{sharedExpense===true?setSharedExpense(false):setSharedExpense(true)}}>Gasto compartido?</Checkbox>
+              </FormControl>
+              {console.log(sharedExpense)}
+            {sharedExpense===true?<SharedExpenses />:<></>}
             </Stack>
             
             <Stack spacing="6">
@@ -125,5 +132,9 @@ axios.post('https://controladorgastosapi.herokuapp.com/expenses/create/',{title:
     </Alert>:<></>}
 </Stack>
 </Container>
-  )
+
+
+
+)
+
 }
