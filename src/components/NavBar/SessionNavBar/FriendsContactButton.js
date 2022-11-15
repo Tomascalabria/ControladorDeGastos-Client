@@ -26,8 +26,8 @@ export const FriendsContactButton = ({friends}) => {
                  
                 
             </MenuButton>
-            <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
-            {friends.map((item)=>{return(<Link to={item.route}>  <MenuItem  key={item.index}>{item.name}</MenuItem></Link>)})}
+            <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} >
+            {friends.map((item)=>{return(<Link onClick={onclose} to={item.route}>  <MenuItem  key={item.index}>{item.name}</MenuItem></Link>)})}
             </MenuList>
         </Menu>
 </>

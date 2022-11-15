@@ -1,4 +1,4 @@
-import React,{ useRef } from "react"
+import React,{ useRef} from "react"
 import { Button, Drawer,IconButton, DrawerCloseButton, DrawerContent, DrawerOverlay,DrawerFooter,DrawerHeader,DrawerBody, useDisclosure, Flex, ButtonGroup,Text, useColorMode} from "@chakra-ui/react"
 import { FiMenu } from "react-icons/fi"
 import { Link } from "react-router-dom"
@@ -46,7 +46,7 @@ export const ModalMenu=({props})=> {
                       <ButtonGroup  justifyContent='center' variant="link" spacing="8">
                     
               
-                          <Link to={'/'}>
+                          <Link to={'/' }>
                           Inicio
                           </Link>
                       </ButtonGroup>

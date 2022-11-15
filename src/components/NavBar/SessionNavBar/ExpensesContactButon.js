@@ -27,7 +27,7 @@ export const ExpensesContactButon = ({expenses}) => {
                 
             </MenuButton>
             <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
-            {expenses.map((item)=>{return(<Link to={item.route}>  <MenuItem  key={item.index}>{item.name}</MenuItem></Link>)})}
+            {expenses.map((item)=>{return(<Link to={item.route} >  <MenuItem   key={item.index}>{item.name}</MenuItem></Link>)})}
             </MenuList>
         </Menu>
 </>

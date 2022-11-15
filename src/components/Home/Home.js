@@ -1,8 +1,10 @@
-import React from 'react'
-import {  Box,  Flex,  Heading,  HStack,  Icon,  Image,  Link,  Skeleton,  Stack,  useColorModeValue,} from '@chakra-ui/react'
+import React, { useContext } from 'react'
+import {  Box,  Flex,  Heading,  HStack,  Icon,  Image,  Skeleton,  Stack,  useColorModeValue,} from '@chakra-ui/react'
 import { FaArrowRight } from 'react-icons/fa'
-
+import {AuthContext} from '../../Context/AuthContext'
+import { Link } from 'react-router-dom'
 export const Home = () => {
+  const {user}=useContext(AuthContext)
   return (
       <Box
         maxW="7xl"
@@ -73,10 +75,12 @@ export const Home = () => {
                   De las cuentas nos encargamos nosotros
                 </Heading>
               </Stack>
-              <HStack spacing="3">
-                <Link color={useColorModeValue('red.500', 'red.300')} fontWeight="bold" fontSize="lg" >
+              <HStack spacing="3" color={useColorModeValue('red.500', 'red.300')}>
+                {user? <Link to={'/gastos/ver'}   fontWeight="bold" fontSize="lg" >
                   Descubrir
-                </Link>
+                </Link>: <Link to={'/login'}   fontWeight="bold" fontSize="lg" >
+                  Descubrir
+                </Link>}
                 <Icon color={useColorModeValue('red.500', 'red.300')} as={FaArrowRight} />
               </HStack>
             </Stack>
