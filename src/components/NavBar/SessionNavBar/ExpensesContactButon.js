@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 
 
-export const ExpensesContactButon = ({expenses}) => {
+export const ExpensesContactButon = ({expenses,props}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -27,7 +27,7 @@ export const ExpensesContactButon = ({expenses}) => {
                 
             </MenuButton>
             <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
-            {expenses.map((item)=>{return(<Link to={item.route} >  <MenuItem   key={item.index}>{item.name}</MenuItem></Link>)})}
+            {expenses.map((item)=>{return(<Link to={item.route} >  <MenuItem onClick={()=>props.onClose()}  key={item.index}>{item.name}</MenuItem></Link>)})}
             </MenuList>
         </Menu>
 </>

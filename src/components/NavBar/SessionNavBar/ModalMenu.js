@@ -43,7 +43,7 @@ export const ModalMenu=({props})=> {
   
             <DrawerBody display={'flex'} flexDir='column' height={'100%'}alignItems='center'>
             <Flex flexDir={'column'} align={'center'}  justifyContent='space-between' marginTop={'2rem'} width='100%'h={'40%'}   alignItems='center' >
-                      <ButtonGroup onClick={onClose} justifyContent='center' variant="link" spacing="8">
+                      <ButtonGroup justifyContent='center' variant="link" spacing="8">
                     
               
                           <Link to={'/' }>
@@ -52,12 +52,12 @@ export const ModalMenu=({props})=> {
                       </ButtonGroup>
 
 
-                      <ButtonGroup spacing="8"onClick={onClose} >
-                      <ExpensesContactButon  expenses={expenses}key={expenses.index}/>
+                      <ButtonGroup spacing="8" >
+                      <ExpensesContactButon  props={{onClose}} expenses={expenses}key={expenses.index}/>
                       </ButtonGroup>
 
-                        <ButtonGroup spacing="8" onClick={onClose}>
-                      <FriendsContactButton  friends={friends}key={friends.index}/>
+                        <ButtonGroup spacing="8" >
+                      <FriendsContactButton  props={{onClose}} friends={friends}key={friends.index}/>
                       </ButtonGroup>
 
                   <ButtonGroup marginBottom={'-9rem'} >

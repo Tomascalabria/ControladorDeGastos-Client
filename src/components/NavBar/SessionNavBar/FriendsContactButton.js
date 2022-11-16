@@ -8,8 +8,8 @@ export const FriendsContactButton = ({friends,props}) => {
 
   return (
 <>
-  <Menu isOpen={isOpen} >
-            <MenuButton key={friends.index}
+  <Menu isOpen={isOpen}  >
+            <MenuButton  key={friends.index}
                 variant="ghost"
                 mx={3}
                 py={[1, 2, 2]}
@@ -20,14 +20,13 @@ export const FriendsContactButton = ({friends,props}) => {
                 fontWeight="normal"
                 onMouseEnter={onOpen}
                 onMouseLeave={onClose}
-            
             >
             amigxs
                  
                 
             </MenuButton>
-            <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} >
-            {friends.map((item)=>{return(<Link  to={item.route}>  <MenuItem  key={item.index}>{item.name}</MenuItem></Link>)})}
+            <MenuList  onMouseEnter={onOpen} onMouseLeave={onClose }  >
+            {friends.map((item)=>{return(<Link  to={item.route}>  <MenuItem onClick={()=>props.onClose()}  key={item.index}>{item.name}</MenuItem></Link>)})}
             </MenuList>
         </Menu>
 </>
