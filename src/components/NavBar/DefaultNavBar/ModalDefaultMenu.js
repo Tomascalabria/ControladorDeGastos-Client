@@ -45,11 +45,11 @@ export const ModalDefaultMenu=()=> {
                       </ButtonGroup>
 
                         <ButtonGroup spacing="8" >
-                        <Link to={'login'}><Button  variant="ghost"
+                        <Link to={'login'}><Button onClick={onClose}  variant="ghost"
                 mx={3}
                 py={[1, 2, 2]}
                 px={4}
-                borderRadius={5} >Login</Button></Link>
+                borderRadius={5}  >Login</Button></Link>
                               </ButtonGroup>
 
                   <ButtonGroup marginBottom={'-9rem'} >
@@ -57,7 +57,7 @@ export const ModalDefaultMenu=()=> {
                 mx={3}
                 py={[1, 2, 2]}
                 px={4}
-                borderRadius={5}>Register</Button></Link>
+                borderRadius={5} onClick={onClose} >Register</Button></Link>
                   </ButtonGroup>
        </Flex>
             </DrawerBody>
