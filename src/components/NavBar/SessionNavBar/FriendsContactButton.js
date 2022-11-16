@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 
 
-export const FriendsContactButton = ({friends}) => {
+export const FriendsContactButton = ({friends,props}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
 <>
-  <Menu isOpen={isOpen}>
+  <Menu isOpen={isOpen} >
             <MenuButton key={friends.index}
                 variant="ghost"
                 mx={3}
@@ -27,7 +27,7 @@ export const FriendsContactButton = ({friends}) => {
                 
             </MenuButton>
             <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} >
-            {friends.map((item)=>{return(<Link onClick={onclose} to={item.route}>  <MenuItem  key={item.index}>{item.name}</MenuItem></Link>)})}
+            {friends.map((item)=>{return(<Link  to={item.route}>  <MenuItem  key={item.index}>{item.name}</MenuItem></Link>)})}
             </MenuList>
         </Menu>
 </>
