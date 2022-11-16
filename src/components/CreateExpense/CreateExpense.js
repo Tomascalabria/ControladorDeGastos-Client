@@ -114,7 +114,7 @@ console.log([friendsToShare])
           </Stack>
           </form>
                   </Box>
-                  {status===201?
+                  {status===200?
       <Alert
       status='success'
       variant='subtle'
@@ -128,9 +128,11 @@ console.log([friendsToShare])
       <AlertTitle mt={4} mb={1} fontSize='lg'>
         Felicitaciones!
       </AlertTitle>
-      <AlertDescription maxWidth='sm'>
+      {sharedExpense=true?<AlertDescription maxWidth='sm'>
+        Su gasto ha compartido sido creado exitosamente. 
+      </AlertDescription>:<AlertDescription maxWidth='sm'>
         Su gasto ha sido creado exitosamente.
-      </AlertDescription>
+      </AlertDescription>}
     </Alert>:<></>}
 </Stack>
 </Container>
