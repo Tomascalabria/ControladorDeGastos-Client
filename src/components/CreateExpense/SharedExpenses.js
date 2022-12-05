@@ -1,4 +1,4 @@
-import React,{useContext} from "react";
+import React,{useContext, useEffect, useState} from "react";
 import { Flex, FormControl, FormHelperText, FormLabel, Text, useColorModeValue } from "@chakra-ui/react";
 import {Link} from 'react-router-dom'
 import {
@@ -9,11 +9,24 @@ import {
   AutoCompleteList,
 } from "@choc-ui/chakra-autocomplete";
 import { AuthContext } from "../../Context/AuthContext";
+import axios from 'axios'
 
 export const SharedExpenses=({props})=> {
- 
-  const {user}=useContext(AuthContext)
-const friends=user.userInfo.friends
+  const [friends,setFriends]=useState([])
+const {user }=useContext(AuthContext)
+const route=''
+  const getFriends=async ()=>{
+    const friends =await axios.get(`https://controladorgastosapi.herokuapp.com/${user.userInfo._id}/search`)
+    .then((res)=>{
+      setFriends(res.data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+  useEffect(()=>{
+    getFriends()
+  },[])
   return (
     <Flex  justify="center" align="center" w="full" direction="column">
     <FormControl id="email" w="60">

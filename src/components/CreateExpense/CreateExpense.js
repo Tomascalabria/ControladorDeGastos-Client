@@ -130,7 +130,7 @@ axios.post(`${prod_url}`,{title:title.current.value,amount:monto.current.value,t
       <AlertTitle mt={4} mb={1} fontSize='lg'>
         Felicitaciones!
       </AlertTitle>
-      {sharedExpense=true?<AlertDescription maxWidth='sm'>
+      {sharedExpense=true&&status!=false?<AlertDescription maxWidth='sm'>
         Su gasto ha compartido sido creado exitosamente. 
       </AlertDescription>:<AlertDescription maxWidth='sm'>
         Su gasto ha sido creado exitosamente.

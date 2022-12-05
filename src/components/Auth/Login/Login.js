@@ -146,7 +146,7 @@ import { AuthContext } from '../../../Context/AuthContext'
                 }}
                 fontWeight="bold"
               >
-                Sorry
+               {error.response.data}
               </chakra.span>
               <chakra.p
                 color="gray.600"
